@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jaydenjoony05.github.io/sitemap.xml

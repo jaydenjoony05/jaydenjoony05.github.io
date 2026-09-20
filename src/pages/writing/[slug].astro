@@ -1,0 +1,5 @@
+---
+import Layout from '../../layouts/Layout.astro';import posts from '../../data/writing.json';
+export function getStaticPaths(){return posts.map(post=>({params:{slug:post.slug},props:{post}}));}const {post}=Astro.props;
+---
+<Layout title={`${post.title} — Jayden Park`}><header class="wrap page-head"><a class="back-link" href="/writing/">← All writing</a><p class="eyebrow">From the archive / 2024</p><h1>{post.title}</h1></header><article class="prose">{post.text.split('\n\n').map((p:string)=><p>{p}</p>)}<a class="text-link" href={post.source}>Original publication ↗</a></article></Layout>

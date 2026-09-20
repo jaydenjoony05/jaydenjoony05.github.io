@@ -1,0 +1,8 @@
+---
+import Picture from './Picture.astro';
+const {project, featured=false}=Astro.props;
+---
+<a class:list={['project-card',{'feature-card':featured}]} href={`/work/${project.slug}/`}>
+ <div class:list={['project-image',project.kind]}><Picture image={project.images[0]} alt={`${project.title} — ${project.category}`} /><span class="open-label" aria-hidden="true">Explore ↗</span></div>
+ <div class="card-caption"><div><h3>{project.title}</h3><p>{project.category}</p></div><span aria-hidden="true">↗</span></div>
+</a>

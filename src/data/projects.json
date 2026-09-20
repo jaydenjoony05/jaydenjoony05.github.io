@@ -1,0 +1,358 @@
+[
+  {
+    "slug": "dream",
+    "title": "DREAM",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "Dreams are wonderfully personal and unique; these are mine, what are yours?",
+    "source": "https://www.indpnt-studio.com/5-dream",
+    "images": [
+      {
+        "file": "183f58_d0587d277c9b4409bbaaaba77bd7e86a~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "moma-virtual-tours",
+    "title": "MoMA: Virtual Tours",
+    "category": "Website Design",
+    "kind": "design",
+    "description": "Redesign ideas prompted through AI generation; heavy inspiration from MoMA's current website layout.",
+    "source": "https://www.indpnt-studio.com/2-moma-virtual-tours",
+    "images": [
+      {
+        "file": "183f58_93c8d99c6ab84cac82c418d193af18c1~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "drift",
+    "title": "Drift",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "A world navigated by a single person; or perhaps being desperately held back by one.",
+    "source": "https://www.indpnt-studio.com/3-drift",
+    "images": [
+      {
+        "file": "183f58_f13af62ac9ea40769a0d2ba86a75b8b3~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "textures",
+    "title": "Textures",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "An experimental piece of work depicting the various physical attributes of nature; an objective to manifest reality.",
+    "source": "https://www.indpnt-studio.com/2-textures",
+    "images": [
+      {
+        "file": "183f58_affb0e53162e47e3a893c8d37a6393df~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "book-cover-design",
+    "title": "The Lethargic Conqueror",
+    "category": "Concept Product Design",
+    "kind": "design",
+    "description": "A creative personal project showcasing both a book cover design and a compelling story.",
+    "source": "https://www.indpnt-studio.com/8-book-cover-design",
+    "images": [
+      {
+        "file": "183f58_3868f7c505b84fec8fcdf8c40aa25357~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "under-construction",
+    "title": "Under Construction",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "The maintenance of structural integrity embedded within a chaotic layout.",
+    "source": "https://www.indpnt-studio.com/6-under-construction",
+    "images": [
+      {
+        "file": "183f58_5768753652eb4e9c997eed6b714ac532~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "card-design",
+    "title": "Holiday Card Design",
+    "category": "Concept Product Design",
+    "kind": "design",
+    "description": "",
+    "source": "https://www.indpnt-studio.com/10-card-design",
+    "images": [
+      {
+        "file": "183f58_22dbcb884e434ccbab966e36ce7aa251~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "file": "183f58_4d3e8d3bd2d042babab6f0cd98114cd6~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "dunkin-poster-design",
+    "title": "Good with Coffee, or by Itself",
+    "category": "Poster design",
+    "kind": "design",
+    "description": "A creative personal project showcasing a mockup advertisement poster. Creative Inspiration from Doug Pedersen on Behance.",
+    "source": "https://www.indpnt-studio.com/6-dunkin-poster-design",
+    "images": [
+      {
+        "file": "183f58_b9d4153e4b4b467ea9940093a8d42439~mv2.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "the-upside-downtown",
+    "title": "The Upside Downtown",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "An experimental juxtaposition of color, placement, and medium manifested into a precarious yet intriguing tale of two towns.",
+    "source": "https://www.indpnt-studio.com/1-the-upside-downtown",
+    "images": [
+      {
+        "file": "183f58_848eba9ab0194053997d731a39f9c6f3~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "jersey-design",
+    "title": "Jersey Design",
+    "category": "Concept Product Design",
+    "kind": "design",
+    "description": "",
+    "source": "https://www.indpnt-studio.com/9-jersey-design",
+    "images": [
+      {
+        "file": "183f58_5924b8f59fee476f96086329d48b6635~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "change-design-challenge",
+    "title": "Unheard Voices Outreach",
+    "category": "Mobile App UI design",
+    "kind": "design",
+    "description": "As part of a club-affiliated design challenge for 'Unheard Voices Outreach', a 501(c)(3) nonprofit advocating for formerly incarcerated individuals within the state of Tennessee and their transition back into society.",
+    "source": "https://www.indpnt-studio.com/1-change-design-challenge",
+    "images": [
+      {
+        "file": "183f58_ba02e06a340e4e19802c079cfb7a560e~mv2.png",
+        "alt": "Resources.png"
+      },
+      {
+        "file": "183f58_81288ae5206745f0b56555bcf4631450~mv2.png",
+        "alt": "Staff.png"
+      },
+      {
+        "file": "183f58_821d171478ff406fb4322b4527028e00~mv2.png",
+        "alt": "Volunteer.png"
+      },
+      {
+        "file": "183f58_76f775845794467488519b2597fab6c0~mv2.png",
+        "alt": "Jamboard.png"
+      }
+    ]
+  },
+  {
+    "slug": "labrador",
+    "title": "Labrador",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "Achieving ultimate realism through white chalk.",
+    "source": "https://www.indpnt-studio.com/7-labrador",
+    "images": [
+      {
+        "file": "183f58_dc49bb9c59ed428bb8abbfbd211c708f~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "change-miracle-flights",
+    "title": "Miracle Flights",
+    "category": "Website UI design",
+    "kind": "design",
+    "description": "A 6-month long project engagement with 'Miracle Flights', a 501(c)(3) nonprofit that provides flights free-of-charge to those in need of life-changing medical care not found in their immediate, local communities.",
+    "source": "https://www.indpnt-studio.com/1-change-miracle-flights",
+    "images": [
+      {
+        "file": "183f58_088434e1aaea409592275c991556e280~mv2.png",
+        "alt": "1. Landing Page.png"
+      },
+      {
+        "file": "183f58_c6a8569afce04dc4a45c5a0d22d8ba48~mv2.png",
+        "alt": "2. Notifications.png"
+      },
+      {
+        "file": "183f58_65a28c061c7f43db8ecbb9a09b2569bb~mv2.png",
+        "alt": "3. Patients & Companions.png"
+      },
+      {
+        "file": "183f58_23617404687045aaae0e9a36a875cdba~mv2.png",
+        "alt": "4. Trips Extended.png"
+      },
+      {
+        "file": "183f58_1f05881974ab47f29504c9540ae931cf~mv2.png",
+        "alt": "5. Request a Flight.png"
+      },
+      {
+        "file": "183f58_d715a1d112014bb090603d0b738d6b98~mv2.png",
+        "alt": "6. Document Upload.png"
+      }
+    ]
+  },
+  {
+    "slug": "food-courier",
+    "title": "Food Courier",
+    "category": "Mobile app Mockup",
+    "kind": "design",
+    "description": "Creative credit given to AJ&Smart (Youtube).",
+    "source": "https://www.indpnt-studio.com/3-food-courier",
+    "images": [
+      {
+        "file": "183f58_9fd224589be54f588e87c1f4074ae138~mv2.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "milk-packaging-design",
+    "title": "Milk: Roswell",
+    "category": "Concept Product Design",
+    "kind": "design",
+    "description": "A creative personal project showcasing both a milk carton design and a compelling story.",
+    "source": "https://www.indpnt-studio.com/5-milk-packaging-design",
+    "images": [
+      {
+        "file": "183f58_9d58ad2773734861a9fd283f9779635b~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "rideshield",
+    "title": "RideShield",
+    "category": "Branding + Mobile App Mockup",
+    "kind": "design",
+    "description": "A creative personal project showcasing 'RideShield', an anti-theft software with emphasis on securing smaller\u2013sized, personal vehicles.",
+    "source": "https://www.indpnt-studio.com/1-rideshield",
+    "images": [
+      {
+        "file": "183f58_f49b4e9971774424a794f77de3f66ec1~mv2.png",
+        "alt": ""
+      },
+      {
+        "file": "183f58_b9476ce7cd14440eaa43dd009a000853~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "voyage",
+    "title": "VOYAGE: Disruptive Fragrancy",
+    "category": "Branding + Mobile App Mockup",
+    "kind": "design",
+    "description": "A creative personal project showcasing 'VOYAGE', an e-commerce platform offering and specializing in the sale of various cosmetic fragrances.",
+    "source": "https://www.indpnt-studio.com/4-voyage",
+    "images": [
+      {
+        "file": "183f58_63f30e790d9846e597b867c6ebddbabb~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "file": "183f58_fa3c4da0465345e691326d8c664d0b60~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "file": "183f58_ecab014664224356b523c683084cb5f1~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "file": "183f58_fa0c3b1900364b45a68a4317a1937bad~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "file": "183f58_686331e54ca44fc7829bb1e4c24e387f~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "file": "183f58_b51f111443a24470ac1552b25e0774cf~mv2.png",
+        "alt": ""
+      },
+      {
+        "file": "183f58_0d11f045e6304ca8a450e5d7e1a50f98~mv2.png",
+        "alt": ""
+      },
+      {
+        "file": "183f58_e75d4b7dd99e44b287ff5cc4062bec54~mv2.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "oblivious",
+    "title": "Oblivious",
+    "category": "Fine art",
+    "kind": "art",
+    "description": "We are so encased within our own personal matters, enough to be oblivious to those of others.",
+    "source": "https://www.indpnt-studio.com/4-oblivious",
+    "images": [
+      {
+        "file": "183f58_d5e675c339fd40f4b709b9d5918a52bd~mv2.jpg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "perfume-poster-design",
+    "title": "Perfume Advertisement Design",
+    "category": "Poster Design",
+    "kind": "design",
+    "description": "A creative personal project showcasing a mockup advertisement poster.",
+    "source": "https://www.indpnt-studio.com/7-perfume-poster-design",
+    "images": [
+      {
+        "file": "183f58_e6e6570b92fc47edab242aa6cb4494ad~mv2.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "slug": "indpnt-studio",
+    "title": "INDPNT studio",
+    "category": "Personal identity",
+    "kind": "design",
+    "description": "The original identity for my creative practice: a geometric mark, pink and navy palette, and applications across print. An earlier chapter of the portfolio, preserved here as a branding project.",
+    "source": "https://www.indpnt-studio.com/about",
+    "images": [
+      {
+        "file": "183f58_5328bc590b0a4f0f903e5d8e03083e97~mv2.png",
+        "alt": "Logo.png"
+      },
+      {
+        "file": "183f58_f72c5f0d34ad4373a7e655a5fba844d4~mv2.png",
+        "alt": "Colors.png"
+      },
+      {
+        "file": "183f58_c1f360c8d6204005b3876c882b14fea3~mv2.png",
+        "alt": "front.png"
+      }
+    ]
+  }
+]

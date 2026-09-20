@@ -1,0 +1,4 @@
+---
+import Layout from '../../layouts/Layout.astro';import posts from '../../data/writing.json';
+---
+<Layout title="Writing — Jayden Park"><div class="wrap"><header class="page-head"><p class="eyebrow">From the archive / 2024</p><h1>Thoughts,<br/><em>put into words.</em></h1><p>A small collection of reflections on creativity and design, preserved from my original portfolio.</p></header><div class="writing-list">{posts.map(p=><a href={`/writing/${p.slug}/`}><span>{p.title}</span><span aria-hidden="true">↗</span></a>)}</div></div></Layout>
