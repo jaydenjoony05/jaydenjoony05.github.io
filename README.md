@@ -59,8 +59,23 @@ The intended address is https://jaydenjoony05.github.io/ and uses root-relative 
 
 ## Accessibility and interaction
 
-Semantic page landmarks, one h1 per page, skip link, visible keyboard focus, labeled filter controls, and native modal dialogs. Escape closes artwork dialogs and returns focus to the opener. Collage cards can be moved with arrow keys, reset with Escape or Reset; the decorative drag behavior is disabled for touch scrolling. Reduced-motion preferences suppress animation. Content remains available without JavaScript; filters and enlargement are progressive enhancements.
+Semantic page landmarks, one h1 per page, skip link, visible keyboard focus, labeled filter controls, and native modal dialogs. Escape closes artwork dialogs and returns focus to the opener. The offset hero artwork links directly to project pages and supports keyboard focus. Reduced-motion preferences suppress animation. Content remains available without JavaScript; filters and enlargement are progressive enhancements.
 
 ## Attribution
 
-Artwork/content migrated from Jayden's public Wix portfolio with permission. Existing credits remain on their project pages: Doug Pedersen inspiration, AJ&Smart credit, and the AI-assisted MoMA concept. INDPNT studio is retained as an archive project, not the current brand. DM Sans and DM Serif Display are self-hosted under the SIL Open Font License (see `public/fonts/`).
+Artwork/content migrated from Jayden's public Wix portfolio with permission. Existing credits remain on their project pages: Doug Pedersen inspiration, AJ&Smart credit, and the AI-assisted MoMA concept. INDPNT studio is retained as an archive project, not the current brand. DM Sans is self-hosted under the SIL Open Font License (see `public/fonts/`).
+
+
+### Industry experience
+
+Edit `src/data/experience.json` to update companies, dates, role descriptions, metrics, details, and official product links. `src/components/Experience.astro` renders this section before the creative projects. The expandable details use native HTML and work without JavaScript.
+
+Logos and optimized landing-page screenshots are self-hosted in `public/images/industry/`. Previews link to the official product pages; they are reference images, not websites designed by Jayden. Refresh both the 640px and 1280px WebP versions when updating a screenshot. These images load lazily and do not embed third-party scripts or tracking.
+
+Sources (captured September 20, 2026):
+- TikTok Ads Manager: https://ads.tiktok.com/business/en/solutions/ads-manager
+- L’Oréal company logo: https://www.loreal.com/en/
+- IT Cosmetics refill: https://www.itcosmetics.com/skincare/skincare-products/moisturizer/confidence-in-a-cream-anti-aging-hydrating-moisturizer/ITC_1137.html?dwvar_ITC__1137_size=5.07oz_150ml_refill
+- Pepper app and logo: https://peppertheapp.com/app and https://peppertheapp.com/pepper-logo.svg
+
+Impact metrics and internship context were supplied by Jayden. L’Oréal pricing and budget figures are projections/recommendations, and Pepper gamification results describe the beta rather than confirmed current app features.

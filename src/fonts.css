@@ -26,17 +26,5 @@
   font-display: swap;
   src: url(/fonts/font-3.ttf) format('truetype');
 }
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/font-4.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/font-5.ttf) format('truetype');
-}
+
+@font-face{font-family:'DM Sans About';font-style:normal;font-weight:100 1000;font-display:swap;src:url('/fonts/dm-sans-about-variable.ttf') format('truetype')}

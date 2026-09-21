@@ -1,0 +1,20 @@
+---
+const doodles = [
+ {side:0,top:18,left:33,turn:-25,path:'M32 6v52M6 32h52M14 14l36 36M14 50l36-36'},
+ {side:0,top:55,left:46,turn:4,path:'M32 5c0 18-7 25-25 27 18 3 25 10 25 27 3-17 10-24 25-27C42 29 35 22 32 5Z'},
+ {side:0,top:92,left:46,turn:-17,path:'M12 22h28M26 8v28M43 40v18M34 49h18'},
+ {side:1,top:27,left:38,turn:-8,path:'M10 10c42-10 49 31 24 30S15 10 39 24c19 10 13 30-15 32M24 56l8-11M24 56l13 4'},
+ {side:1,top:64,left:51,turn:21,path:'M12 12c37 0 9 25 23 35l16 6M40 40l12 14-18 1'},
+];
+---
+<div class="gutter-doodles" aria-hidden="true">
+ {[0,1].map(side=><div class={`doodle-rail rail-${side}`}>
+  {doodles.filter(d=>d.side===side).map(d=><svg viewBox="0 0 64 64" style={`top:${d.top}%;left:${d.left}%;--turn:${d.turn}deg`}><path d={d.path}/></svg>)}
+ </div>)}
+</div>
+<style>
+.gutter-doodles{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.doodle-rail{position:absolute;top:0;bottom:0;width:calc((100% - min(1320px, 90%)) / 2);overflow:hidden}
+.rail-0{left:0}.rail-1{right:0}
+.doodle-rail svg{position:absolute;width:65%;max-width:38px;height:auto;transform:translate(-50%,-50%) rotate(var(--turn));fill:none;stroke:var(--pink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+</style>

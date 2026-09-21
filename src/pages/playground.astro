@@ -1,4 +1,39 @@
 ---
+import PlaygroundPhotos from '../components/PlaygroundPhotos.astro';
+import PlaygroundDoodles from '../components/PlaygroundDoodles.astro';
 import Layout from '../layouts/Layout.astro';import Picture from '../components/Picture.astro';import groups from '../data/playground.json';
+
 ---
-<Layout title="Playground — Jayden Park" description="Social graphics and visual storytelling for KUSA, VAPS, Youth in Policy, and Lambda Phi Epsilon."><div class="wrap"><header class="page-head"><p class="eyebrow">A space to make, share & experiment</p><h1>Made for<br/><em>the moment.</em></h1><p>Visuals for the communities I’m part of. A playground of social graphics, shared stories, and creative experiments.</p><nav class="collection-nav" aria-label="Jump to social collection">{groups.map(g=><a href={`#${g.id}`}>{g.title}</a>)}</nav></header>{groups.map(g=><section class="social-group" id={g.id}><div class="section-heading"><div><p class="eyebrow">Social & community</p><h2>{g.title}</h2></div><div><p>{g.role}</p><a class="text-link" href={g.url}>Visit the community ↗</a></div></div><div class="social-grid">{g.images.map((im,i)=><figure><button class="zoom-button" data-zoom data-caption={`${g.title} — graphic collection ${i+1}`} aria-label={`Enlarge ${g.title} graphic collection ${i+1}`}><Picture image={im} alt={`${g.title} social graphics, collection ${i+1}`} sizes="(max-width:700px) 45vw, 30vw"/></button><figcaption>{g.title} / {String(i+1).padStart(2,'0')}</figcaption></figure>)}</div></section>)}</div></Layout>
+<Layout bodyClass="playground-page" title="Playground — Jayden Park" description="Social graphics and visual storytelling for KUSA, VAPS, Change++, Youth in Policy, and Lambda Phi Epsilon."><div class="wrap playground-canvas"><PlaygroundDoodles/><header class="page-head playground-intro"><div class="playground-intro-copy"><h1>outside the <span class="pink-brief">brief</span></h1><p class="playground-description">A playground of social graphics, stories, and creative experimentation<strong>Made for fun. for keeps. for the people <svg class="playground-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="love"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></strong></p></div><PlaygroundPhotos/></header>{groups.map(g=><section class="social-group" id={g.id}><div class="section-heading"><div><p class="eyebrow">{g.id === "kusa" && <span class="kusa-flag" role="img" aria-label="South Korean flag">🇰🇷</span>}{g.id === "vaps" && <span class="kusa-flag vaps-emoji" role="img" aria-label="Briefcase">💼</span>}{g.id === "changeplusplus" && <span class="kusa-flag change-emoji" role="img" aria-label="Alien monster">👾</span>}{g.id === "yip" && <span class="kusa-flag yip-emoji" role="img" aria-label="Classical building">🏛️</span>}{g.id === "lphie" && <span class="kusa-flag lpe-emoji" role="img" aria-label="Globe">🌐</span>}{g.id === "kusa" ? "Korean Undergraduate Student Association" : g.id === "vaps" ? "Vanderbilt Asian Pre-Professional Society" : g.id === "yip" ? "Institute for Youth in Policy" : g.id === "lphie" ? "Vanderbilt Lambda Phi Epsilon International Fraternity" : g.id === "changeplusplus" ? "ChangePlusPlus" : "Social & community"}</p><h2>{g.title}</h2></div><div class="community-details">{g.roles ? g.roles.map(role => <p>{role}</p>) : <p>{g.role}</p>}<a class="text-link" href={g.url}>{g.id === "kusa" ? "Visit KUSA" : g.id === "vaps" ? "Visit VAPS" : g.id === "yip" ? "Visit YIP" : g.id === "lphie" ? "Visit LFE" : g.id === "changeplusplus" ? "Visit C++" : "Visit the community"} ↗</a></div></div><div class="social-grid">{g.images.map((im,i)=><figure><button class="zoom-button" data-zoom data-caption={im.title || `${g.title} — graphic collection ${i+1}`} aria-label={`Enlarge ${im.title || `${g.title} graphic collection ${i+1}`}`}><Picture image={im} alt={im.title || `${g.title} social graphics, collection ${i+1}`} sizes="(max-width:700px) 45vw, 30vw"/></button><figcaption>{im.title || `${g.title} / ${String(i+1).padStart(2,'0')}`}</figcaption></figure>)}</div></section>)}</div></Layout>
+
+<style>
+  :global(body.playground-page){background-color:#fff;background-image:radial-gradient(circle,rgba(29,53,87,.14) .8px,transparent 1px);background-size:28px 28px;background-position:14px 14px;background-attachment:fixed}
+  .playground-intro h1{margin-bottom:33.75px}
+  .playground-intro .playground-description{max-width:none;font-size:1rem;color:var(--navy)}
+  .playground-description strong{display:block;font-weight:700;margin-top:5.4px}
+  .playground-heart{display:inline-block;width:1em;height:1em;vertical-align:-.13em;margin-left:.15em}
+  .community-details{text-align:right}
+  .social-group .section-heading h2{font-size:clamp(2.73125rem,4.807vw,4.5885rem)}
+  @media(max-width:700px){.social-group .section-heading h2{font-size:2.8405rem}}
+  :global(body.playground-page){overflow-x:clip}
+  .playground-canvas{position:relative;isolation:isolate}
+  .social-group{position:relative}
+  .social-group::before{content:'';position:absolute;inset:-20% calc((min(1320px, 90vw) - 100vw) / 2);z-index:-2;pointer-events:none;mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);background:radial-gradient(ellipse at 8% 22%,rgba(247,164,171,.0864),transparent 58%),radial-gradient(ellipse at 95% 75%,rgba(153,191,218,.0864),transparent 60%)}
+  .social-group:nth-of-type(even)::before{background:radial-gradient(ellipse at 90% 20%,rgba(247,164,171,.09),transparent 58%),radial-gradient(ellipse at 10% 75%,rgba(153,191,218,.09),transparent 60%)}
+  .social-grid figure{background:#fffefa;border:1px solid rgba(29,53,87,.09);box-shadow:0 2px 8px rgba(29,53,87,.045)}
+  .social-grid figcaption{color:var(--navy);font-family:'DM Sans About',var(--sans);font-weight:468;font-optical-sizing:none}
+  .pink-brief{color:var(--pink)}
+  .playground-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:6%;align-items:center;padding-block:75px 85px}
+  .playground-intro h1{font-size:clamp(3.6rem,6.3vw,6rem);margin-top:0}
+  @media(max-width:900px){.playground-intro{grid-template-columns:1fr;gap:40px;padding-block:50px 65px}.playground-intro h1{font-size:clamp(3rem,8vw,5rem)}}
+  .kusa-flag{display:inline-block;font-size:1.4em;vertical-align:-.1em;margin-right:.5em;letter-spacing:0;line-height:1}
+  #vaps .section-heading .eyebrow{display:flex;align-items:center}
+  .vaps-emoji{font-size:1.33em;vertical-align:middle;flex-shrink:0}
+  #kusa .kusa-flag{font-size:1.694em}
+  #changeplusplus .section-heading .eyebrow{display:flex;align-items:center}
+  .change-emoji{font-size:1.33em;vertical-align:middle;flex-shrink:0}
+  #yip .section-heading .eyebrow{display:flex;align-items:center}
+  .yip-emoji{font-size:1.33em;vertical-align:middle;flex-shrink:0}
+  #lphie .section-heading .eyebrow{display:flex;align-items:center}
+  .lpe-emoji{font-size:1.33em;vertical-align:middle;flex-shrink:0}
+</style>

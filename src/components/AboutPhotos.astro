@@ -1,0 +1,18 @@
+---
+const photos = [
+  { name: 'desert', alt: 'Friends beside camels in the desert', width: 1200, height: 804 },
+  { name: 'portrait', alt: 'Jayden sitting at a café surrounded by plants', width: 1200, height: 1600 },
+  { name: 'golf', alt: 'A golf swing on a sunny green course', width: 717, height: 1000 },
+  { name: 'gallery', alt: 'Looking at a shark sculpture in a turquoise gallery tank', width: 750, height: 1000 },
+  { name: 'mirror', alt: 'A mirror photo in a wood-paneled elevator', width: 750, height: 1000 },
+  { name: 'running', alt: 'A selfie during a sunny outdoor run', width: 750, height: 1000 },
+  { name: 'dinner', alt: 'Three friends sharing an evening meal', width: 800, height: 600 },
+  { name: 'lakeside', alt: 'Friends relaxing on the rocks beside the lake', width: 1000, height: 750 },
+  { name: 'london', alt: 'Friends beside the river with the London Eye behind them', width: 800, height: 600 },
+];
+---
+<div class="about-photos" role="group" aria-label="A few moments outside the studio">
+  {photos.map(({ name, alt, width, height }) => (
+    <img class={`about-photo about-photo-${name}`} src={`/images/about/${name}.webp`} alt={alt} width={width} height={height} loading={name === 'portrait' ? 'eager' : 'lazy'} />
+  ))}
+</div>

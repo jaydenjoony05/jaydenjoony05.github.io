@@ -10,6 +10,6 @@ for(const file of pages){const html=readFileSync(file,'utf8');const label=file.s
  for(const match of html.matchAll(/<img\b[^>]*>/g)){if(!/alt="/.test(match[0]))errors.push(`${label}: image missing alt`);}
 }
 const projects=JSON.parse(readFileSync('src/data/projects.json'));const social=JSON.parse(readFileSync('src/data/playground.json'));
-if(projects.length!==20||social.reduce((n,g)=>n+g.images.length,0)!==21)errors.push('Source collection coverage changed: review intentional additions/removals');
+if(projects.length!==20||social.reduce((n,g)=>n+g.images.length,0)!==24)errors.push('Source collection coverage changed: review intentional additions/removals');
 if(existsSync('public/CNAME'))errors.push('Domain connection must remain unconfigured until approved');
-if(errors.length){console.error(errors.join('\n'));process.exit(1);}console.log(`PASS: ${pages.length} HTML pages, internal file links, metadata, alt attributes, 20 projects and 21 social graphics.`);
+if(errors.length){console.error(errors.join('\n'));process.exit(1);}console.log(`PASS: ${pages.length} HTML pages, internal file links, metadata, alt attributes, 20 projects and 24 social graphics.`);

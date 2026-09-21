@@ -1,0 +1,27 @@
+---
+import Picture from './Picture.astro';
+import projects from '../data/projects.json';
+const opening=['the-upside-downtown','change-miracle-flights','textures','dunkin-poster-design','drift','voyage','under-construction','change-design-challenge','book-cover-design','labrador','moma-virtual-tours','milk-packaging-design','oblivious','jersey-design','rideshield','perfume-poster-design','dream','food-courier','card-design','indpnt-studio'];
+const ordered=[...opening.map(slug=>projects.find(p=>p.slug===slug)!),...projects.filter(p=>!opening.includes(p.slug))];
+---
+<section class="fragment-section wrap" id="creative-work" aria-labelledby="fragments-title">
+  <div class="section-heading fragment-heading">
+    <div><p class="eyebrow">02 / Selected fragments</p><h2 id="fragments-title">A <span class="fragment-little">little</span> bit<br/>of <strong>everything</strong>.</h2></div>
+    <div class="fragment-introduction"><p>Fine Art, pixels, and in-between ideas.<br/> Follow whatever catches your eye.</p><p class="fragment-credit">Featured on the <em>Vanderbilt Review</em> and <em class="scholastic-credit">The Scholastic Art &amp; Writing Awards</em></p></div>
+  </div>
+  <div class="fragment-toolbar">
+    <div class="filters" aria-label="Filter creative projects"><button data-filter="all" aria-pressed="true">All fragments</button><button data-filter="art" aria-pressed="false">Fine Art</button><button data-filter="design" aria-pressed="false">Design</button></div>
+    <span class="fragment-count" data-filter-status aria-live="polite">{ordered.length} fragments</span>
+  </div>
+  <div class="fragment-web" data-active-filter="all">
+    {ordered.map((project,i)=><article class={`fragment fragment-shape-${i%6}`} data-kind={project.kind}>
+      <a class="fragment-link" href={`/work/${project.slug}/`}>
+        <div class:list={['fragment-image',project.kind]}>
+          <Picture image={project.slug==='the-upside-downtown'?{file:'183f58_26b25dce1a5f4730950c4d074159297b~mv2.jpg'}:project.images[0]} alt={`${project.title} — ${project.category}`} sizes="(max-width: 550px) 90vw, (max-width: 900px) 44vw, 38vw"/>
+          <span class="fragment-open" aria-hidden="true">View fragment ↗</span>
+        </div>
+        <div class="fragment-label"><span class="fragment-number" aria-hidden="true">{String(i+1).padStart(2,'0')}</span><div><h3>{project.title}</h3><p>{project.category}</p></div><span class="fragment-arrow" aria-hidden="true">↗</span></div>
+      </a>
+    </article>)}
+  </div>
+</section>

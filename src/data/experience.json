@@ -1,0 +1,107 @@
+[
+  {
+    "id": "tiktok",
+    "company": "TikTok",
+    "team": "TikTok for Business · Ads Manager",
+    "role": "Growth Marketing Intern",
+    "dates": "May – August 2026",
+    "location": "San Jose, CA",
+    "url": "https://ads.tiktok.com/business/en/solutions/ads-manager",
+    "linkLabel": "Explore TikTok Ads Manager",
+    "headline": "Turning creative testing into advertiser growth.",
+    "summary": "I helped grow advertiser acquisition through new channels, creative experimentation, and global campaign launches.",
+    "metrics": [
+      {
+        "value": "−50%",
+        "label": "creative turnaround time"
+      },
+      {
+        "value": "30+",
+        "label": "markets launched"
+      },
+      {
+        "value": "−16%",
+        "label": "CPR week over week"
+      }
+    ],
+    "details": [
+      "Informed global B2B advertiser acquisition strategy across TikTok’s search, organic, and social portfolio.",
+      "Helped launch LinkedIn Ads as a new acquisition channel in North America.",
+      "Orchestrated five global ad campaign launches across 35 markets, delivering 5,000+ creative assets and reducing creative turnaround time by 50%.",
+      "Automated reporting across eight funnel metrics utilizing AI Agent workflow, saving 3+ hours each week."
+    ],
+    "note": "Official product page · Advertiser acquisition work",
+    "imageHeight": 800,
+    "logo": "tiktok-logo.png"
+  },
+  {
+    "id": "loreal",
+    "company": "L’Oréal",
+    "team": "L’Oréal Luxe · IT Cosmetics",
+    "role": "Product Marketing Intern",
+    "dates": "June – August 2025",
+    "location": "New York, NY",
+    "url": "https://www.itcosmetics.com/skincare/skincare-products/moisturizer/confidence-in-a-cream-anti-aging-hydrating-moisturizer/ITC_1137.html?dwvar_ITC__1137_size=5.07oz_150ml_refill",
+    "linkLabel": "Explore the refill",
+    "headline": "A new sustainable chapter for a skincare staple.",
+    "summary": "I shaped the brand's first refillable pouch's go-to-market strategy, connecting consumer insights and reviews with product positioning, pricing, and a channel launch plan that was presented to senior leadership.",
+    "metrics": [
+      {
+        "value": "150",
+        "label": "consumer reviews analyzed"
+      },
+      {
+        "value": "10+",
+        "label": "competitor products benched"
+      },
+      {
+        "value": "−18%",
+        "label": "projected SRP per unit"
+      }
+    ],
+    "details": [
+      "Developed launch strategy for IT Cosmetics, exploring the 40+ consumer, sustainability trends, and the refillable pouch’s value proposition.",
+      "Analyzed 150 consumer review and 12 competitor products to identify pricing opportunities that lowered projected suggested retail price by 18% per unit.",
+      "Recommended channel allocation across direct-to-consumer, e-commerce, social, and creator marketing for a planned Q2 2026 rollout.",
+      "Presented competitive analysis, product assortment, rollout recommendations, and next steps to leadership. The refill launched in summer 2026, after my internship."
+    ],
+    "note": "Confidence in a Cream · Refill launched summer 2026",
+    "imageHeight": 1280,
+    "logo": "loreal-logo-black.png",
+    "previewImage": "loreal-refill.png",
+    "previewAlt": "IT Cosmetics Confidence in a Cream refill pouch alongside super-size, full-size, and travel-size jars"
+  },
+  {
+    "id": "pepper",
+    "company": "Pepper",
+    "team": "Social cooking app · Gamification",
+    "role": "Product Marketing Intern",
+    "dates": "August 2025 – January 2026",
+    "location": "New York, NY",
+    "url": "https://peppertheapp.com/app",
+    "linkLabel": "Explore the Pepper app",
+    "headline": "Making the next visit worth coming back for.",
+    "summary": "I translated user feedback into gamification ideas, extending Pepper’s charcuterie board experience and helping bring a daily food trivia feature into testing.",
+    "metrics": [
+      {
+        "value": "3M+",
+        "label": "users"
+      },
+      {
+        "value": "85%",
+        "label": "first-week beta adoption"
+      },
+      {
+        "value": "20+",
+        "label": "Figma wireframes"
+      }
+    ],
+    "details": [
+      "Developed a product-growth roadmap for a social cooking app with 3M+ users during my internship, translating user pain points into gamification features.",
+      "Launched two gamification features to 3,000 beta users, achieving 85% first-week adoption and a 13% increase in day-seven retention.",
+      "Synthesized user feedback into five mobile friction points and prototyped 20+ high-fidelity Figma wireframes to guide improvements."
+    ],
+    "note": "Official app page · Gamification work tested in beta",
+    "imageHeight": 720
+  }
+]

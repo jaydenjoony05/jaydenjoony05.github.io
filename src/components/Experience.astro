@@ -1,0 +1,31 @@
+---
+import experience from '../data/experience.json';
+---
+<section class="experience-section wrap" id="work" aria-labelledby="experience-title">
+  <div class="section-heading experience-heading">
+    <div><p class="eyebrow">01 / Professional Experience</p><h2 id="experience-title">Work in Practice</h2></div>
+  </div>
+  {experience.map(item => <article class={`experience-item experience-${item.id}`} aria-labelledby={`${item.id}-title`}>
+    <header class="experience-header">
+      <div class="experience-brand">
+        <img class={`company-logo logo-${item.id}`} src={`/images/industry/${item.logo || `${item.id}-logo.svg`}`} width="137" height="40" alt={`${item.company} logo`} loading="lazy" />
+        <div><h3 id={`${item.id}-title`}>{item.company}</h3><p>{item.team}</p></div>
+      </div>
+      <div class="experience-role"><p>{item.role}</p><span>{item.dates} · {item.location}</span></div>
+    </header>
+    <div class="experience-body">
+      <figure class="experience-preview">
+        <a href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`${item.linkLabel} (opens in a new tab)`}>
+          <div class="preview-address"><span>{new URL(item.url).hostname}</span><span aria-hidden="true">↗</span></div>
+          <img src={`/images/industry/${item.previewImage || `${item.id}-1280.webp`}`} srcset={item.previewImage ? undefined : `/images/industry/${item.id}-640.webp 640w, /images/industry/${item.id}-1280.webp 1280w`} sizes="(max-width: 800px) 90vw, 52vw" width="1280" height={item.imageHeight} loading="lazy" decoding="async" alt={item.previewAlt || `${item.company === 'L’Oréal' ? 'IT Cosmetics Confidence in a Cream refill' : item.company === 'TikTok' ? 'TikTok Ads Manager' : 'Pepper app'} official landing page preview`} />
+        </a>
+        <figcaption>{item.note}</figcaption>
+      </figure>
+      <div class="experience-impact">
+        <h4>{item.headline}</h4><p>{item.summary}</p>
+        <dl class="experience-metrics">{item.metrics.map(metric => <div><dt>{metric.label}</dt><dd>{metric.value}</dd></div>)}</dl>
+        <details><summary>More about my work <span aria-hidden="true">+</span></summary><ul>{item.details.map(detail => <li>{detail}</li>)}</ul></details>
+      </div>
+    </div>
+  </article>)}
+</section>

@@ -1,25 +1,57 @@
 ---
 import '../fonts.css';
 import '../style.css';
-const {title='Jayden Park — Art, design & everything in between',description='A selection of fine art, digital experiences, and graphic design by Jayden Park. Creative work shaped by curiosity, people, and ideas.'}=Astro.props;
+const {bodyClass='',title='Jayden Park — Art, design & everything in between',description='A selection of fine art, digital experiences, and graphic design by Jayden Park. Creative work shaped by curiosity, people, and ideas.'}=Astro.props;
 const path=Astro.url.pathname;
 ---
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content="#1D3557"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="canonical" href={new URL(path,Astro.site)}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={new URL(path,Astro.site)}/><title>{title}</title></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="/" aria-label="Jayden Park home">jayden park<span aria-hidden="true">✳</span></a><nav aria-label="Main navigation"><a href="/#work" aria-current={path==='/'?'page':undefined}>Work</a><a href="/playground/" aria-current={path==='/playground/'?'page':undefined}>Playground</a><a href="/about/" aria-current={path==='/about/'?'page':undefined}>About</a><a class="contact-nav" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a></nav></header>
+<body class={bodyClass}><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="/" aria-label="Jayden Park home">jayden park</a><nav aria-label="Main navigation"><a href="/#work" aria-current={path==='/'?'page':undefined}>Work</a><a href="/playground/" aria-current={path==='/playground/'?'page':undefined}>Playground</a><a href="/about/" aria-current={path==='/about/'?'page':undefined}>About</a></nav></header>
 <main id="main"><slot/></main>
-<footer id="contact"><div class="footer-top"><p class="eyebrow">A good idea starts with a conversation.</p><a class="footer-cta" href="https://www.linkedin.com/in/jaydenpark2005/">Let’s make<br/><em>something matter.</em><span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© {new Date().getFullYear()} Jayden Park</span><span>Made with curiosity & a little pink.</span><div><a href="https://www.linkedin.com/in/jaydenpark2005/">LinkedIn ↗</a><a href="https://www.instagram.com/wnsduq_/">Instagram ↗</a><a href="/writing/">Writing</a></div></div></footer>
+<footer id="contact"><div class="footer-top"><a class="footer-cta" href="https://www.linkedin.com/in/jaydenpark2005/">Always happy to <em>connect &amp; chat!</em><span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© {new Date().getFullYear()} Jayden Park</span><span>Made with curiosity & a little pink.</span><div><a href="mailto:jayden.l.park@vanderbilt.edu">Email ↗</a><a href="https://www.linkedin.com/in/jaydenpark2005/">LinkedIn ↗</a><a href="https://www.instagram.com/wnsduq_/">Instagram ↗</a><a href="/writing/">Writing</a></div></div></footer>
 <dialog id="lightbox" aria-label="Artwork enlarged"><button class="lightbox-close" aria-label="Close enlarged artwork">Close ×</button><img alt=""/><p></p></dialog>
+<span class="cursor-dot" aria-hidden="true"></span>
 <script>
 const dialog=document.querySelector<HTMLDialogElement>('#lightbox');
 document.querySelectorAll<HTMLButtonElement>('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{const image=button.querySelector('img');if(!image||!dialog)return;const target=dialog.querySelector('img')!;target.src=image.src;target.alt=image.alt;dialog.querySelector('p')!.textContent=button.dataset.caption||image.alt;dialog.showModal();}));
 dialog?.querySelector('button')?.addEventListener('click',()=>dialog.close());
 dialog?.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 const filters=document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-filters.forEach(button=>button.addEventListener('click',()=>{const value=button.dataset.filter;filters.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll<HTMLElement>('[data-kind]').forEach(card=>{card.hidden=value!=='all'&&card.dataset.kind!==value;if(!card.hidden)count++;});const status=document.querySelector('[data-filter-status]');if(status)status.textContent=`${count} projects shown`;}));
+filters.forEach(button=>button.addEventListener('click',()=>{const value=button.dataset.filter;filters.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll<HTMLElement>('[data-kind]').forEach(card=>{card.hidden=value!=='all'&&card.dataset.kind!==value;if(!card.hidden)count++;});const status=document.querySelector('[data-filter-status]');if(status)status.textContent=`${count} fragments`;const gallery=document.querySelector<HTMLElement>('.fragment-web');if(gallery)gallery.dataset.activeFilter=value;}));
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduced&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}}),{threshold:0.08});document.querySelectorAll('[data-reveal]').forEach(el=>{el.classList.add('will-reveal');observer.observe(el);});}
-const cards=document.querySelectorAll<HTMLElement>('.collage-piece');
-const resets:Array<()=>void>=[];
-cards.forEach(card=>{let startX=0,startY=0,x=0,y=0,active=false;resets.push(()=>{x=0;y=0;card.style.translate='0px 0px';});card.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')return;active=true;startX=e.clientX-x;startY=e.clientY-y;card.setPointerCapture(e.pointerId);card.classList.add('moving');});card.addEventListener('pointermove',e=>{if(!active)return;x=Math.max(-60,Math.min(60,e.clientX-startX));y=Math.max(-50,Math.min(50,e.clientY-startY));card.style.translate=`${x}px ${y}px`;});const stop=()=>{active=false;card.classList.remove('moving');};card.addEventListener('pointerup',stop);card.addEventListener('pointercancel',stop);card.addEventListener('keydown',e=>{const moves:Record<string,number[]>={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]};if(moves[e.key]){e.preventDefault();x=Math.max(-60,Math.min(60,x+moves[e.key][0]));y=Math.max(-50,Math.min(50,y+moves[e.key][1]));card.style.translate=`${x}px ${y}px`;}if(e.key==='Escape'){x=0;y=0;card.style.translate='0px 0px';}});});
-document.querySelector('[data-reset]')?.addEventListener('click',()=>resets.forEach(reset=>reset()));
+
+// Keep native link behavior, including keyboard and modified clicks.
+document.querySelectorAll<HTMLAnchorElement>('[data-random-fragment]').forEach(link=>{
+  const paths:string[]=JSON.parse(link.dataset.randomFragment||'[]');
+  const choose=()=>{if(paths.length)link.href=paths[Math.floor(Math.random()*paths.length)];};
+  choose();
+  link.addEventListener('click',choose);
+  link.addEventListener('auxclick',choose);
+});
+const dot=document.querySelector<HTMLElement>('.cursor-dot');
+const cursorMotion=window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+let cursorFrame=0, cursorX=0, cursorY=0, targetX=0, targetY=0, cursorVisible=false;
+function hideCursorDot(){
+  cursorVisible=false;
+  if(dot)dot.style.opacity='0';
+  cancelAnimationFrame(cursorFrame);cursorFrame=0;
+}
+function moveCursorDot(){
+  if(!dot||!cursorVisible)return;
+  cursorX+=(targetX-cursorX)*.22;cursorY+=(targetY-cursorY)*.22;
+  dot.style.transform=`translate3d(${cursorX}px,${cursorY}px,0) translate(-50%,-50%)`;
+  if(Math.abs(targetX-cursorX)+Math.abs(targetY-cursorY)>.2)cursorFrame=requestAnimationFrame(moveCursorDot);
+  else cursorFrame=0;
+}
+window.addEventListener('pointermove',event=>{
+  if(!dot||!cursorMotion.matches||event.pointerType!=='mouse'){hideCursorDot();return;}
+  targetX=event.clientX;targetY=event.clientY+34;
+  if(!cursorVisible){cursorX=targetX;cursorY=targetY;cursorVisible=true;dot.style.opacity='1';}
+  if(!cursorFrame)cursorFrame=requestAnimationFrame(moveCursorDot);
+},{passive:true});
+document.documentElement.addEventListener('pointerleave',hideCursorDot);
+window.addEventListener('blur',hideCursorDot);
+window.addEventListener('keydown',hideCursorDot);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)hideCursorDot();});
+cursorMotion.addEventListener('change',hideCursorDot);
 </script></body></html>
