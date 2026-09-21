@@ -30,8 +30,7 @@ jobs:
         with:
           path: dist
   deploy:
-    # Intentionally off until Jayden explicitly approves publishing.
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.PAGES_PUBLISH_APPROVED == 'true'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     permissions:
