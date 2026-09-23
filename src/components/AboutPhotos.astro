@@ -16,3 +16,26 @@ const photos = [
     <img class={`about-photo about-photo-${name}`} src={`/images/about/${name}.webp`} alt={alt} width={width} height={height} loading={name === 'portrait' ? 'eager' : 'lazy'} />
   ))}
 </div>
+
+<script>
+  import { markAboutPhotosFinished } from '../scripts/about-motion';
+  const photos = document.querySelector('.about-photos');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (photos && !motion.matches) {
+    const observer = new IntersectionObserver(async entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      observer.disconnect();
+      const animations = !motion.matches ? Array.from(photos.querySelectorAll('img'), (photo, index) => {
+        return photo.animate([
+          { opacity: 0, transform: 'translateY(16px) scale(.98)' },
+          { opacity: 1, transform: 'translateY(0) scale(1)' },
+        ], { duration: 420, delay: index * 55, fill: 'backwards', easing: 'cubic-bezier(.22,1,.36,1)' });
+      }) : [];
+      await Promise.allSettled(animations.map(animation => animation.finished));
+      markAboutPhotosFinished();
+    }, { threshold: .12 });
+    observer.observe(photos);
+  } else {
+    markAboutPhotosFinished();
+  }
+</script>

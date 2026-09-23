@@ -3,7 +3,38 @@ import Layout from '../layouts/Layout.astro';import Experience from '../componen
 const get=(slug:string)=>projects.find(p=>p.slug===slug)!;
 const fineArtPaths=projects.filter(p=>p.category==='Fine art').map(p=>`/work/${p.slug}/`);
 ---
-<Layout><section class="hero wrap"><div class="hero-copy"><h1><span><span class="sr-only">hi,</span><span aria-hidden="true">h<span class="star-i">ı<span class="i-star">✳</span></span>,</span></span><span>I’m <a class="hero-name" href="/about/">Jayden</a></span></h1><p class="hero-description">I work across art, design, and strategy to make complex ideas clear, useful, and <strong>memorable</strong>.</p><a class="text-link" href="#work">Follow the thread <span aria-hidden="true">↓</span></a></div><div class="collage" aria-label="Selected work"><div class="collage-heading"><span>FEATURED: FRAGMENTS OF THE DAY / 01—03</span><span aria-hidden="true">[ JP ]</span></div>{[get('the-upside-downtown'),get('textures'),get('drift')].map((p,i)=><a class={`collage-piece piece-${i}`} href={`/work/${p.slug}/`} aria-label={`Explore ${p.title}`}><Picture image={i===0 ? {file:"183f58_26b25dce1a5f4730950c4d074159297b~mv2.jpg"} : p.images[0]} alt={p.title} eager sizes="(max-width:700px) 75vw, 38vw"/><span><b>{String(i+1).padStart(2,'0')}</b> {p.title}<span aria-hidden="true">↗</span></span></a>)}<div class="collage-caption"><a class="random-fragment" href={fineArtPaths[0]} data-random-fragment={JSON.stringify(fineArtPaths)} aria-label="Open a random fine-art fragment">Open a fragment <span aria-hidden="true">↗</span></a></div></div></section>
+<Layout><section class="hero wrap"><div class="hero-copy"><h1><span><span class="sr-only">hi,</span><span aria-hidden="true">h<span class="star-i">ı<svg class="i-star" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 2v28M2 16h28M6 6l20 20M6 26 26 6" fill="none" stroke="currentColor" stroke-width="4"/></svg></span>,</span></span><span>I’m <a class="hero-name" href="/about/">Jayden</a></span></h1><p class="hero-description">I work across art, design, and strategy to turn complex ideas into <strong>memorable stories.</strong></p><a class="text-link" href="#work">Follow the thread <span aria-hidden="true">↓</span></a></div><div class="collage" aria-label="Selected work"><div class="collage-heading"><span>FEATURED: FRAGMENTS OF THE DAY / 01—03</span><span aria-hidden="true">[ JAYDEN PARK ]</span></div>{[get('the-upside-downtown'),get('textures'),get('drift')].map((p,i)=><a class={`collage-piece piece-${i}`} href={`/work/${p.slug}/`} aria-label={`Explore ${p.title}`}><Picture image={i===0 ? {file:"183f58_26b25dce1a5f4730950c4d074159297b~mv2.jpg"} : p.images[0]} alt={p.title} eager sizes="(max-width:700px) 75vw, 38vw"/><span><b>{String(i+1).padStart(2,'0')}</b> {p.title}<span aria-hidden="true">↗</span></span></a>)}<div class="collage-caption"><a class="random-fragment" href={fineArtPaths[0]} data-random-fragment={JSON.stringify(fineArtPaths)} aria-label="Open a random fine-art fragment">Open a fragment <span aria-hidden="true">↗</span></a></div></div></section>
 <section class="intro-strip wrap" aria-label="Background"><div class="current-background"><span class="eyebrow">Currently</span><p>Campus Growth Lead @ Partiful</p><p class="current-studies">Studying Human &amp; Organizational Development, Art, Business<br/>@ Vanderbilt University (c/o 2027!)</p></div><div class="previous-background"><span class="eyebrow">Previously</span><p>@ TikTok<br/>@ L’Oréal<br/>@ Pepper</p></div><div class="focus-background"><span class="eyebrow">Focuses</span><p><span class="focus-line">Growth Marketing · Product Marketing · UI Design</span><span class="focus-line">Visual &amp; Digital Design · Public Relations</span></p></div><a href="/about/" class="circle-link" aria-label="More about Jayden">↗</a></section>
 <Experience/><FragmentGallery/>
 </Layout>
+
+<script>
+  const featuredPieces = document.querySelectorAll<HTMLElement>('.hero .collage-piece');
+  const popMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  async function popFeaturedFragments() {
+    if (popMotion.matches) { document.documentElement.classList.remove('featured-pop-pending'); return; }
+    await Promise.all(Array.from(featuredPieces, piece => {
+      const image = piece.querySelector('img');
+      return image?.decode().catch(() => {});
+    }));
+    if (popMotion.matches) { document.documentElement.classList.remove('featured-pop-pending'); return; }
+    const animations = Array.from(featuredPieces, (piece, index) => {
+      piece.getAnimations().forEach(animation => animation.cancel());
+      return piece.animate([
+        { scale: '1', opacity: 0, offset: 0 },
+        { scale: '1.51', opacity: 1, offset: .42 },
+        { scale: '1', opacity: 1, offset: 1 },
+      ], { duration: 2 * (320 / 6 / 0.3 / 1.25) / 1.15, delay: index * 2 * (320 / 6 / 0.3 / 1.25) / 1.15, easing: 'ease-in-out', fill: 'both' });
+    });
+    await Promise.allSettled(animations.map(animation => animation.finished));
+    document.documentElement.classList.remove('featured-pop-pending');
+    animations.forEach(animation => animation.cancel());
+  }
+  popFeaturedFragments();
+  window.addEventListener('pageshow', event => {
+    if (event.persisted) popFeaturedFragments();
+  });
+  popMotion.addEventListener('change', event => {
+    if (event.matches) featuredPieces.forEach(piece => piece.getAnimations().forEach(animation => animation.cancel()));
+  });
+</script>

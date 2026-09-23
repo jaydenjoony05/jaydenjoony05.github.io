@@ -5,6 +5,11 @@ const {bodyClass='',title='Jayden Park — Art, design & everything in between',
 const path=Astro.url.pathname;
 ---
 <!doctype html><html lang="en"><head><script is:inline>
+if (location.pathname === '/' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.classList.add('featured-pop-pending');
+  setTimeout(() => document.documentElement.classList.remove('featured-pop-pending'), 5000);
+}
+</script><script is:inline>if ('IntersectionObserver' in window) document.documentElement.classList.add('scroll-fades');</script><script is:inline>
   // Keep local previews out of visitor reports.
   if (window.location.hostname === 'jaydenjoony05.github.io') {
     window.dataLayer = window.dataLayer || [];
@@ -17,7 +22,7 @@ const path=Astro.url.pathname;
     document.head.appendChild(tag);
   }
 </script><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content="#1D3557"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="canonical" href={new URL(path,Astro.site)}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={new URL(path,Astro.site)}/><title>{title}</title></head>
-<body class={bodyClass}><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="/" aria-label="Jayden Park home">jayden park</a><nav aria-label="Main navigation"><a href="/#work" aria-current={path==='/'?'page':undefined}>Work</a><a href="/playground/" aria-current={path==='/playground/'?'page':undefined}>Playground</a><a href="/about/" aria-current={path==='/about/'?'page':undefined}>About</a></nav></header>
+<body class={bodyClass}><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="/" aria-label="Jayden Park home">jp<span class="wordmark-period">.</span></a><nav aria-label="Main navigation"><a href="/#work" aria-current={path==='/'?'page':undefined}>Work</a><a href="/playground/" aria-current={path==='/playground/'?'page':undefined}>Playground</a><a href="/about/" aria-current={path==='/about/'?'page':undefined}>About</a></nav></header>
 <main id="main"><slot/></main>
 <footer id="contact"><div class="footer-top"><a class="footer-cta" href="https://www.linkedin.com/in/jaydenpark2005/">Always happy to <em>connect &amp; chat!</em><span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© {new Date().getFullYear()} Jayden Park</span><span>Made with curiosity & a little pink.</span><div><a href="mailto:jayden.l.park@vanderbilt.edu">Email ↗</a><a href="https://www.linkedin.com/in/jaydenpark2005/">LinkedIn ↗</a><a href="https://www.instagram.com/wnsduq_/">Instagram ↗</a><a href="/writing/">Writing</a></div></div></footer>
 <dialog id="lightbox" aria-label="Artwork enlarged"><button class="lightbox-close" aria-label="Close enlarged artwork">Close ×</button><img alt=""/><p></p></dialog>
@@ -28,7 +33,26 @@ document.querySelectorAll<HTMLButtonElement>('[data-zoom]').forEach(button=>butt
 dialog?.querySelector('button')?.addEventListener('click',()=>dialog.close());
 dialog?.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 const filters=document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-filters.forEach(button=>button.addEventListener('click',()=>{const value=button.dataset.filter;filters.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll<HTMLElement>('[data-kind]').forEach(card=>{card.hidden=value!=='all'&&card.dataset.kind!==value;if(!card.hidden)count++;});const status=document.querySelector('[data-filter-status]');if(status)status.textContent=`${count} fragments`;const gallery=document.querySelector<HTMLElement>('.fragment-web');if(gallery)gallery.dataset.activeFilter=value;}));
+filters.forEach(button=>button.addEventListener('click',()=>{
+  if(button.getAttribute('aria-pressed')==='true')return;
+  const value=button.dataset.filter;
+  const cards=Array.from(document.querySelectorAll<HTMLElement>('.fragment-web [data-kind]'));
+  const before=new Map(cards.filter(card=>!card.hidden).map(card=>[card,card.getBoundingClientRect()]));
+  cards.forEach(card=>card.getAnimations().forEach(animation=>animation.cancel()));
+  filters.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+  cards.forEach(card=>{card.hidden=value!=='all'&&card.dataset.kind!==value;});
+  const visible=cards.filter(card=>!card.hidden);
+  const status=document.querySelector('[data-filter-status]');
+  if(status)status.textContent=`${visible.length} fragments`;
+  const gallery=document.querySelector<HTMLElement>('.fragment-web');
+  if(gallery)gallery.dataset.activeFilter=value;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  visible.forEach(card=>{
+    const old=before.get(card), next=card.getBoundingClientRect();
+    const first=old ? {transform:`translate(${old.left-next.left}px,${old.top-next.top}px) scale(${old.width/next.width},${old.height/next.height})`,opacity:1} : {transform:'translateY(18px) scale(.98)',opacity:0};
+    card.animate([first,{transform:'none',opacity:1}],{duration:460,easing:'cubic-bezier(.22,1,.36,1)'});
+  });
+}));
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduced&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}}),{threshold:0.08});document.querySelectorAll('[data-reveal]').forEach(el=>{el.classList.add('will-reveal');observer.observe(el);});}
 

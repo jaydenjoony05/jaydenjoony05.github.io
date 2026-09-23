@@ -46,7 +46,48 @@ const groups = [
   <span class="sr-only personal-remix-status" role="status"></span>
 </section>
 <script>
+  import { aboutPhotosFinished } from '../scripts/about-motion';
   const play = document.querySelector('.personal-play');
+  const remixButton = play?.querySelector<HTMLButtonElement>('.personal-remix');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let entranceObserver: IntersectionObserver | undefined;
+  let entranceRun = 0;
+  function cueRemix() {
+    const run = ++entranceRun;
+    entranceObserver?.disconnect();
+    if (!remixButton || reducedMotion.matches) return;
+    entranceObserver = new IntersectionObserver(async entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      entranceObserver?.disconnect();
+      await aboutPhotosFinished;
+      await new Promise(resolve => setTimeout(resolve, 700));
+      if (run !== entranceRun || reducedMotion.matches) return;
+      const bounds = remixButton.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) {
+        entranceObserver?.observe(remixButton);
+        return;
+      }
+      // Space the original shake beats 1 / 0.7 times farther apart (30% slower).
+      const shakeBeat = 100 / 0.7;
+      const duration = 800;
+      remixButton.animate([
+        { transform: 'scale(1) rotate(0deg)', offset: 0 },
+        { transform: 'scale(1.32) rotate(-4deg)', offset: shakeBeat / duration },
+        { transform: 'scale(1.32) rotate(4deg)', offset: 2 * shakeBeat / duration },
+        { transform: 'scale(1.32) rotate(-3deg)', offset: 3 * shakeBeat / duration },
+        { transform: 'scale(1.32) rotate(3deg)', offset: 4 * shakeBeat / duration },
+        { transform: 'scale(1.32) rotate(0deg)', offset: 5 * shakeBeat / duration },
+        { transform: 'scale(1) rotate(0deg)', offset: 1 },
+      ], { duration, easing: 'ease-in-out' });
+      entranceObserver?.disconnect();
+    }, { threshold: 1 });
+    entranceObserver.observe(remixButton);
+  }
+  cueRemix();
+  window.addEventListener('pageshow', event => {
+    if (event.persisted) cueRemix();
+  });
+
   function animateToken(button: Element) {
     button.classList.remove('is-playing');
     requestAnimationFrame(() => requestAnimationFrame(() => button.classList.add('is-playing')));
@@ -70,10 +111,17 @@ const groups = [
         [items[slot], items[replacement]] = [items[replacement], items[slot]];
       }
       items.forEach((item, index) => {
+        item.getAnimations().forEach(animation => animation.cancel());
         item.hidden = index >= 3;
         list.append(item);
         const button = item.querySelector('button');
-        if (animate && index < 3 && button) animateToken(button);
+        if (animate && index < 3 && button) {
+          animateToken(button);
+          if (!reducedMotion.matches) item.animate([
+            { opacity: 0, transform: 'translateX(18px)' },
+            { opacity: 1, transform: 'translateX(0)' },
+          ], { duration: 320, delay: index * 55, fill: 'backwards', easing: 'cubic-bezier(.22,1,.36,1)' });
+        }
       });
     });
   }
