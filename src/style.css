@@ -229,8 +229,8 @@ h3{font-weight:600}
 .about-bio>p:nth-of-type(-n+3) strong{font-weight:630}
 @media(max-width:700px){.about-bio>p:nth-of-type(-n+3){font-size:.84rem}}
 
-.about-intro .about-greeting{font-size:clamp(1.6875rem,2.875vw,2.75rem)}
-@media(max-width:700px){.about-intro .about-greeting{font-size:clamp(1.625rem,5.75vw,2.375rem)}}
+.about-intro .about-greeting{font-size:clamp(1.771875rem,3.01875vw,2.8875rem)}
+@media(max-width:700px){.about-intro .about-greeting{font-size:clamp(1.70625rem,6.0375vw,2.49375rem)}}
 
 .about-philosophy>strong{display:block}
 .about-links{display:flex;align-items:center;gap:8px;margin-top:40px;width:max-content}
