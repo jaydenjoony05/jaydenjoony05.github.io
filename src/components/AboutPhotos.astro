@@ -25,17 +25,24 @@ const photos = [
     const observer = new IntersectionObserver(async entries => {
       if (!entries.some(entry => entry.isIntersecting)) return;
       observer.disconnect();
+      const images = Array.from(photos.querySelectorAll('img'));
+      await Promise.all(images.map(image => {
+        image.loading = 'eager';
+        return image.decode().catch(() => {});
+      }));
       const animations = !motion.matches ? Array.from(photos.querySelectorAll('img'), (photo, index) => {
         return photo.animate([
           { opacity: 0, transform: 'translateY(16px) scale(.98)' },
           { opacity: 1, transform: 'translateY(0) scale(1)' },
         ], { duration: 420, delay: index * 55, fill: 'backwards', easing: 'cubic-bezier(.22,1,.36,1)' });
       }) : [];
+      photos.classList.add('photos-ready');
       await Promise.allSettled(animations.map(animation => animation.finished));
       markAboutPhotosFinished();
     }, { threshold: .12 });
     observer.observe(photos);
   } else {
+    photos?.classList.add('photos-ready');
     markAboutPhotosFinished();
   }
 </script>

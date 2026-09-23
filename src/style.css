@@ -246,6 +246,7 @@ h3{font-weight:600}
 /* A filled rectangular mosaic with shared, responsive white gutters. */
 .about-photos{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(6,minmax(0,1fr)) minmax(0,1.8fr);gap:clamp(6px,1vw,12px);width:100%;aspect-ratio:.92;align-self:center}
 .about-photo{display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:cover;margin:0}
+@media(prefers-reduced-motion:no-preference){.scroll-fades .about-photos:not(.photos-ready) .about-photo{opacity:0}}
 /* Match the mosaic to the story, with optical insets for the label and icon artwork. */
 @media(min-width:701px){.about-photos{align-self:stretch;aspect-ratio:auto;contain:size;min-height:0;margin-block:4px 11px}}
 .about-photo-portrait{grid-column:4/10;grid-row:3/7;object-position:50% 100%}
