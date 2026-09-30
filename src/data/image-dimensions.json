@@ -278,5 +278,29 @@
   "changeplusplus-board": [
     1206,
     1201
+  ],
+  "pepper-streak-milestone": [
+    780,
+    1688
+  ],
+  "pepper-streak-unlocked": [
+    780,
+    1688
+  ],
+  "pepper-streak-profile": [
+    780,
+    1688
+  ],
+  "pepper-streak-continue": [
+    1006,
+    2178
+  ],
+  "pepper-challenge-invitation": [
+    982,
+    2130
+  ],
+  "pepper-challenge-feed": [
+    780,
+    1688
   ]
 }

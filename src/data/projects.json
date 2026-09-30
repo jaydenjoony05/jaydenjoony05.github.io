@@ -250,7 +250,7 @@
     "title": "RideShield",
     "category": "Branding + Mobile App Mockup",
     "kind": "design",
-    "description": "A creative personal project showcasing 'RideShield', an anti-theft software with emphasis on securing smaller\u2013sized, personal vehicles.",
+    "description": "A creative personal project showcasing 'RideShield', an anti-theft software with emphasis on securing smaller–sized, personal vehicles.",
     "source": "https://www.indpnt-studio.com/1-rideshield",
     "images": [
       {
@@ -352,6 +352,39 @@
       {
         "file": "183f58_c1f360c8d6204005b3876c882b14fea3~mv2.png",
         "alt": "front.png"
+      }
+    ]
+  },
+  {
+    "slug": "pepper",
+    "title": "Pepper",
+    "category": "Mobile App UI Design",
+    "kind": "design",
+    "description": "Designing cooking streaks and cooking challenges for Pepper: making progress visible, celebrating consistency, and giving home cooks a reason to return.",
+    "images": [
+      {
+        "file": "pepper-streak-milestone",
+        "alt": "Five-week cooking streak and reward milestone"
+      },
+      {
+        "file": "pepper-streak-unlocked",
+        "alt": "Streak unlocked after posting a recipe"
+      },
+      {
+        "file": "pepper-streak-profile",
+        "alt": "Cooking streak badge on a user profile"
+      },
+      {
+        "file": "pepper-streak-continue",
+        "alt": "Streak continuation pop-up"
+      },
+      {
+        "file": "pepper-challenge-invitation",
+        "alt": "Invitation to join a cooking challenge"
+      },
+      {
+        "file": "pepper-challenge-feed",
+        "alt": "Cooking challenge discovery and entry screen"
       }
     ]
   }

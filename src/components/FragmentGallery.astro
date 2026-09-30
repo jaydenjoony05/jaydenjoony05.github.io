@@ -1,7 +1,7 @@
 ---
 import Picture from './Picture.astro';
 import projects from '../data/projects.json';
-const opening=['the-upside-downtown','change-miracle-flights','textures','dunkin-poster-design','drift','voyage','under-construction','change-design-challenge','book-cover-design','labrador','moma-virtual-tours','milk-packaging-design','oblivious','jersey-design','rideshield','food-courier','dream','perfume-poster-design','card-design','indpnt-studio'];
+const opening=['the-upside-downtown','pepper','textures','change-miracle-flights','drift','voyage','under-construction','change-design-challenge','book-cover-design','labrador','moma-virtual-tours','milk-packaging-design','oblivious','jersey-design','rideshield','food-courier','dream','perfume-poster-design','dunkin-poster-design','card-design','indpnt-studio'];
 const retainedShapes: Record<string, number> = {'dream':4,'food-courier':5,'perfume-poster-design':3};
 const ordered=[...opening.map(slug=>projects.find(p=>p.slug===slug)!),...projects.filter(p=>!opening.includes(p.slug))];
 ---
@@ -18,7 +18,10 @@ const ordered=[...opening.map(slug=>projects.find(p=>p.slug===slug)!),...project
     {ordered.map((project,i)=><article class={`fragment fragment-shape-${retainedShapes[project.slug] ?? i%6}`} data-kind={project.kind} data-project={project.slug}>
       <a class="fragment-link" href={`/work/${project.slug}/`}>
         <div class:list={['fragment-image',project.kind]}>
-          <Picture image={project.slug==='the-upside-downtown'?{file:'183f58_26b25dce1a5f4730950c4d074159297b~mv2.jpg'}:project.images[0]} alt={`${project.title} — ${project.category}`} sizes="(max-width: 550px) 90vw, (max-width: 900px) 44vw, 38vw"/>
+          {project.slug==='pepper' ? <div class="pepper-fragment-preview">
+            <img class="pepper-preview-logo" src="/images/pepper-logo.png" width="280" height="136" alt="Pepper" loading="lazy"/>
+            <div class="pepper-preview-pages">{[1,2,0,3].map(index=><div class="pepper-preview-screen"><Picture image={project.images[index]} alt={project.images[index].alt} sizes="(max-width: 550px) 18vw, 8vw"/></div>)}</div>
+          </div> : <Picture image={project.slug==='the-upside-downtown'?{file:'183f58_26b25dce1a5f4730950c4d074159297b~mv2.jpg'}:project.images[0]} alt={`${project.title} — ${project.category}`} sizes="(max-width: 550px) 90vw, (max-width: 900px) 44vw, 38vw"/>}
           <span class="fragment-open" aria-hidden="true">View fragment ↗</span>
         </div>
         <div class="fragment-label"><div><h3>{project.title}</h3><p>{project.category}</p></div><span class="fragment-arrow" aria-hidden="true">↗</span></div>
@@ -26,6 +29,32 @@ const ordered=[...opening.map(slug=>projects.find(p=>p.slug===slug)!),...project
     </article>)}
   </div>
 </section>
+
+<style>
+  @media(min-width:901px){
+    .fragment-web[data-active-filter="all"] .fragment:nth-child(-n+3){align-self:end;padding-top:0}
+  }
+  @media(min-width:901px){
+    .fragment-web[data-active-filter="all"] .fragment[data-project="indpnt-studio"]{grid-column:4 / span 6;width:100%;justify-self:center;padding-top:30px}
+  }
+  @media(min-width:551px) and (max-width:900px){
+    .fragment-web[data-active-filter="all"] .fragment[data-project="indpnt-studio"]{grid-column:1 / -1;width:65%;justify-self:center;padding-top:20px}
+  }
+  @media(max-width:550px){
+    .fragment-web[data-active-filter="all"] .fragment[data-project="indpnt-studio"]{width:100%;justify-self:center}
+  }
+  .fragment[data-project="pepper"] .fragment-image{min-height:0;padding:8px 0}
+  .pepper-fragment-preview{display:flex;flex-direction:column;align-items:center;gap:9.6px;width:80%;margin-inline:auto;transition:transform .3s ease}
+  .pepper-fragment-preview .pepper-preview-logo{width:76%;max-width:240px;height:auto;max-height:none;object-fit:contain}
+  .pepper-preview-pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(4px,.6vw,8px);width:100%;align-items:center}
+  .pepper-preview-screen{overflow:hidden;border:1px solid var(--line);aspect-ratio:780/1688}
+  .pepper-preview-screen :global(img){width:100%;height:100%;max-height:none;object-fit:cover}
+  .pepper-preview-screen:last-child :global(img){scale:1.012}
+  @media(min-width:901px){
+    .fragment-web[data-active-filter="all"] .pepper-fragment-preview{position:relative;top:clamp(-50px,-3.5vw,-32px)}
+  }
+  @media(hover:hover){.fragment-link:hover .pepper-fragment-preview{transform:translateY(-7px) scale(1.025)}.fragment-link:hover .pepper-fragment-preview :global(img){transform:none}}
+</style>
 
 <script>
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
