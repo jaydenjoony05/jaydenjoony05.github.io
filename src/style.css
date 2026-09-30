@@ -361,4 +361,4 @@ h3{font-weight:600}
 .hero .collage-caption{position:relative;inset:auto;grid-column:1 / -1;grid-row:3;align-self:start;padding-top:16px}
 
 /* Rounded arrow for the default mouse; interactive controls retain their own cursors. */
-@media (pointer:fine){html,body{cursor:url("/cursor-retro.svg") 2 2,auto}}
+@media (pointer:fine){html,body{cursor:url("/cursor-outline-white.svg") 2 2,auto}}
