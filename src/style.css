@@ -143,7 +143,7 @@ h3{font-weight:600}
 .random-fragment{display:inline-flex;align-items:center;gap:6.16px;min-height:39.424px;padding:7.392px 14.784px;border:1px solid var(--navy);border-radius:6.72px;font-size:1.232em;transform-origin:right center;transition:transform .2s ease}
 .random-fragment:focus-visible{transform:scale(1.3)}
 @media(hover:hover) and (pointer:fine){.random-fragment:hover{transform:scale(1.3)}}
-.cursor-dot{position:fixed;top:0;left:0;width:17.43768px;height:17.43768px;border-radius:50%;background:var(--pink);pointer-events:none;z-index:9999;opacity:0;will-change:transform}
+.cursor-dot{position:fixed;top:0;left:0;width:18.4839408px;height:18.4839408px;border-radius:50%;background:var(--pink);pointer-events:none;z-index:9999;opacity:0;will-change:transform}
 @media(prefers-reduced-motion:reduce),(hover:none),(pointer:coarse){.cursor-dot{display:none}}
 
 /* Enlarge the opening invitation without shifting the surrounding layout. */
