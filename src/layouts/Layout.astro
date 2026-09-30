@@ -1,10 +1,13 @@
 ---
 import '../fonts.css';
+import PlaygroundSwipe from '../components/PlaygroundSwipe.astro';
 import '../style.css';
 const {bodyClass='',title='Jayden Park — Art, design & everything in between',description='A selection of fine art, digital experiences, and graphic design by Jayden Park. Creative work shaped by curiosity, people, and ideas.'}=Astro.props;
 const path=Astro.url.pathname;
 ---
-<!doctype html><html lang="en"><head><script is:inline>
+<!doctype html><html lang="en" style={path==='/playground/' ? 'background-color:#1d3557' : undefined}><head>{path==='/playground/' && <style is:inline>
+html,body{background-color:#1d3557}body{background-image:radial-gradient(circle,rgba(250,247,240,.12) .8px,transparent 1px),radial-gradient(ellipse at 100% 0%,rgba(227,148,155,.50),transparent 65%),radial-gradient(ellipse at 0% 100%,rgba(227,148,155,.40),transparent 65%),linear-gradient(135deg,#1c2841,#3a3047 52%,#1c2841);background-size:28px 28px,100% 100%,100% 100%,100% 100%;background-position:14px 14px,0 0,0 0,0 0;background-attachment:fixed}
+</style>}<script is:inline>
 if (location.pathname === '/' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.classList.add('featured-pop-pending');
   setTimeout(() => document.documentElement.classList.remove('featured-pop-pending'), 5000);
@@ -26,7 +29,9 @@ if (location.pathname === '/' && !matchMedia('(prefers-reduced-motion: reduce)')
 <main id="main"><slot/></main>
 <footer id="contact"><div class="footer-top"><a class="footer-cta" href="https://www.linkedin.com/in/jaydenpark2005/">Always happy to <em>connect &amp; chat!</em><span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© {new Date().getFullYear()} Jayden Park</span><span>Made with curiosity & a little pink.</span><div><a href="mailto:jayden.l.park@vanderbilt.edu">Email ↗</a><a href="https://www.linkedin.com/in/jaydenpark2005/">LinkedIn ↗</a><a href="https://www.instagram.com/wnsduq_/">Instagram ↗</a><a href="/writing/">Writing</a></div></div></footer>
 <dialog id="lightbox" aria-label="Artwork enlarged"><button class="lightbox-close" aria-label="Close enlarged artwork">Close ×</button><img alt=""/><p></p></dialog>
+{path==='/' && <PlaygroundSwipe/>}
 <span class="cursor-dot" aria-hidden="true"></span>
+
 <script>
 const dialog=document.querySelector<HTMLDialogElement>('#lightbox');
 document.querySelectorAll<HTMLButtonElement>('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{const image=button.querySelector('img');if(!image||!dialog)return;const target=dialog.querySelector('img')!;target.src=image.src;target.alt=image.alt;dialog.querySelector('p')!.textContent=button.dataset.caption||image.alt;dialog.showModal();}));

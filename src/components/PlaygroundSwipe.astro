@@ -1,0 +1,116 @@
+<a class="playground-edge" draggable="false" href="/playground/" aria-label="Drag left or press Enter to open Playground"></a>
+<span class="playground-drag-hint" aria-hidden="true"><span>←</span> Drag Left!</span>
+<div class="playground-slide" aria-hidden="true"></div>
+<style>
+.playground-edge{display:none}
+.playground-drag-hint{position:fixed;left:0;top:0;z-index:10000;pointer-events:none;white-space:nowrap;color:#1d3557;display:flex;align-items:center;gap:5px;line-height:1;font-size:14px;font-weight:750;opacity:0;transform:translate(calc(-100% - 16px),-50%)}
+.playground-drag-hint span{color:#f7a4ab;font-size:17.6px;line-height:1;display:block}
+:global(html.playground-edge-hover .cursor-dot){visibility:hidden}
+:global(html.playground-edge-hover) .playground-drag-hint{opacity:1}
+.playground-slide{position:fixed;inset:0 auto 0 0;width:100vw;z-index:100;transform:translate3d(100%,0,0);pointer-events:none;background:linear-gradient(135deg,#1d3557,#826575,#1d3557);visibility:hidden}
+.playground-slide :global(iframe){width:100%;height:100%;border:0;pointer-events:none;opacity:0}
+@media(min-width:901px) and (pointer:fine){.playground-edge{display:block;position:fixed;right:0;top:100px;bottom:0;width:max(18px,calc((100vw - min(1440px,94vw))/4));z-index:99;cursor:grab;touch-action:pan-y}.playground-edge span{position:absolute;right:12px;top:50%;writing-mode:vertical-rl;font-size:12px;letter-spacing:.05em;opacity:0;transition:opacity .2s;white-space:nowrap}.playground-edge:hover span,.playground-edge:focus-visible span{opacity:.65}.playground-edge:active{cursor:grabbing}}
+:global(html.playground-dragging),:global(html.playground-dragging *){cursor:grabbing!important;user-select:none!important}
+:global(html.playground-dragging .cursor-dot){visibility:hidden}
+:global(html.playground-active){overflow:hidden}
+:global(html.playground-active) .playground-slide{pointer-events:auto}
+:global(html.playground-active) .playground-slide :global(iframe){pointer-events:auto}
+:global(html.playground-active) .playground-edge,:global(html.playground-active) .playground-drag-hint,:global(html.playground-active .cursor-dot),:global(html.playground-active body > .skip){display:none}
+</style>
+<script>
+const edge=document.querySelector<HTMLAnchorElement>('.playground-edge');
+const slide=document.querySelector<HTMLElement>('.playground-slide');
+const hint=document.querySelector<HTMLElement>('.playground-drag-hint');
+if(edge&&slide){
+ const surfaces=Array.from(document.querySelectorAll<HTMLElement>('body > .site-header,body > main,body > footer'));
+ let startX=0,startY=0,active=false,dragged=false,navigating=false;
+ let previewReady:Promise<void>|undefined;
+ const homeTitle=document.title;
+ const activate=()=>{
+  const frame=slide.querySelector('iframe')!;
+  document.documentElement.classList.remove('playground-dragging','playground-edge-hover');
+  document.documentElement.classList.add('playground-active');
+  surfaces.forEach(el=>{el.inert=true;el.style.visibility='hidden';});
+  slide.style.transition='none';slide.style.transform='translate3d(0,0,0)';slide.style.visibility='visible';
+  slide.removeAttribute('aria-hidden');frame.tabIndex=0;frame.title='Playground';
+  document.title=frame.contentDocument?.title||'Playground';
+  // Keep the exact rendered document, including decoded photos and animation clocks.
+  frame.contentDocument?.querySelectorAll('a[href]').forEach(link=>{
+   if(!link.getAttribute('href')?.startsWith('#')&&!link.hasAttribute('target'))link.setAttribute('target','_top');
+  });
+ };
+ window.addEventListener('popstate',()=>{
+  if(location.pathname==='/playground/'){activate();return;}
+  document.documentElement.classList.remove('playground-active');
+  surfaces.forEach(el=>{el.inert=false;el.style.visibility='';});
+  slide.setAttribute('aria-hidden','true');document.title=homeTitle;navigating=false;reset();
+ });
+ const preload=()=>{
+  if(previewReady)return previewReady;
+  previewReady=new Promise<void>(resolve=>{
+   const frame=document.createElement('iframe');frame.title='Playground preview';frame.tabIndex=-1;
+   frame.addEventListener('load',async()=>{
+    const doc=frame.contentDocument;
+    if(doc){
+     const images=Array.from(doc.images);
+     images.forEach(image=>image.loading='eager');
+     await Promise.allSettled([doc.fonts.ready,...images.map(image=>image.decode())]);
+    }
+    frame.style.opacity='1';resolve();
+   },{once:true});
+   frame.src='/playground/';slide.append(frame);
+  });
+  return previewReady;
+ };
+ const prepare=()=>{
+  preload();
+  if(!reduced.matches){surfaces.forEach(el=>el.style.willChange='transform');slide.style.willChange='transform';}
+ };
+ const positionHint=(e:PointerEvent)=>{if(hint){hint.style.left=`${e.clientX}px`;hint.style.top=`${e.clientY}px`;}};
+ edge.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse')return;prepare();positionHint(e);document.documentElement.classList.add('playground-edge-hover');});
+ edge.addEventListener('pointerleave',()=>{if(!active)document.documentElement.classList.remove('playground-edge-hover');});
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const paint=(x:number)=>{if(!reduced.matches){surfaces.forEach(el=>el.style.transform=`translate3d(${-x}px,0,0)`);slide.style.transform=`translate3d(${innerWidth-x}px,0,0)`;}};
+ const reset=()=>{active=false;document.documentElement.classList.remove('playground-dragging','playground-edge-hover');surfaces.forEach(el=>{el.style.transform='';el.style.transition='';el.style.willChange='';});slide.style.visibility='hidden';slide.style.transform='';slide.style.transition='';slide.style.willChange='';};
+ edge.addEventListener('pointerdown',e=>{
+  if(e.button!==0||e.pointerType!=='mouse'||navigating)return;
+  active=true;dragged=false;startX=e.clientX;startY=e.clientY;edge.setPointerCapture(e.pointerId);
+  prepare();
+ });
+ const complete=async()=>{
+  if(navigating)return;
+  navigating=true;active=false;dragged=true;
+  document.documentElement.classList.add('playground-dragging');
+  await preload();
+  slide.style.visibility='visible';
+  const duration=reduced.matches?0:1100;
+  surfaces.forEach(el=>el.style.transition=`transform ${duration}ms cubic-bezier(.4,0,.2,1)`);
+  slide.style.transition=`transform ${duration}ms cubic-bezier(.4,0,.2,1)`;
+  const handoff=()=>{
+   history.pushState({playground:true},'', '/playground/');
+   activate();
+   slide.querySelector('iframe')?.focus();
+  };
+  if(!duration){handoff();return;}
+  // Activate the same document after the compositor finishes the slide.
+  slide.addEventListener('transitionend',event=>{
+   if(event.target===slide&&event.propertyName==='transform')requestAnimationFrame(()=>requestAnimationFrame(handoff));
+  },{once:true});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>paint(innerWidth)));
+ };
+ edge.addEventListener('pointermove',e=>{
+  positionHint(e);if(e.pointerType==='mouse')document.documentElement.classList.add('playground-edge-hover');
+  if(!active||navigating)return;
+  const x=startX-e.clientX;
+  if(Math.abs(e.clientY-startY)>Math.max(10,x)){reset();return;}
+  if(x>=3)complete();
+ });
+ edge.addEventListener('pointerup',()=>{if(!navigating&&active)reset();});
+ edge.addEventListener('pointercancel',()=>{if(!navigating)reset();});
+ edge.addEventListener('click',e=>{if(dragged||e.detail>0)e.preventDefault();});
+ // Warm the destination before the pointer reaches the margin.
+ if(matchMedia('(min-width:901px) and (pointer:fine)').matches)preload();
+ // Keep the completed preview visible until the destination replaces this document.
+ window.addEventListener('pageshow',()=>{if(location.pathname==='/playground/'&&slide.querySelector('iframe'))activate();else{navigating=false;reset();}});
+}
+</script>

@@ -7,23 +7,25 @@ import Layout from '../layouts/Layout.astro';import Picture from '../components/
 <Layout bodyClass="playground-page" title="Playground — Jayden Park" description="Social graphics and visual storytelling for KUSA, VAPS, Change++, Youth in Policy, and Lambda Phi Epsilon."><div class="wrap playground-canvas"><PlaygroundDoodles/><header class="page-head playground-intro"><div class="playground-intro-copy"><h1>outside the <span class="pink-brief">brief</span></h1><p class="playground-description">A playground of social graphics, stories, and creative experimentation<strong>Made for fun. for keeps. for the people <svg class="playground-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="love"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></strong></p></div><PlaygroundPhotos/></header>{groups.map(g=><section class="social-group" id={g.id}><div class="section-heading"><div><p class="eyebrow">{g.id === "kusa" && <span class="kusa-flag" role="img" aria-label="South Korean flag">🇰🇷</span>}{g.id === "vaps" && <span class="kusa-flag vaps-emoji" role="img" aria-label="Briefcase">💼</span>}{g.id === "changeplusplus" && <span class="kusa-flag change-emoji" role="img" aria-label="Alien monster">👾</span>}{g.id === "yip" && <span class="kusa-flag yip-emoji" role="img" aria-label="Classical building">🏛️</span>}{g.id === "lphie" && <span class="kusa-flag lpe-emoji" role="img" aria-label="Globe">🌐</span>}{g.id === "kusa" ? "Korean Undergraduate Student Association" : g.id === "vaps" ? "Vanderbilt Asian Pre-Professional Society" : g.id === "yip" ? "Institute for Youth in Policy" : g.id === "lphie" ? "Vanderbilt Lambda Phi Epsilon International Fraternity" : g.id === "changeplusplus" ? "ChangePlusPlus" : "Social & community"}</p><h2>{g.title}</h2></div><div class="community-details">{g.roles ? g.roles.map(role => <p>{role}</p>) : <p>{g.role}</p>}<a class="text-link" href={g.url}>{g.id === "kusa" ? "Visit KUSA" : g.id === "vaps" ? "Visit VAPS" : g.id === "yip" ? "Visit YIP" : g.id === "lphie" ? "Visit LFE" : g.id === "changeplusplus" ? "Visit C++" : "Visit the community"} ↗</a></div></div><div class="social-grid">{g.images.map((im,i)=><figure><button class="zoom-button" data-zoom data-caption={im.title || `${g.title} — graphic collection ${i+1}`} aria-label={`Enlarge ${im.title || `${g.title} graphic collection ${i+1}`}`}><Picture image={im} alt={im.title || `${g.title} social graphics, collection ${i+1}`} sizes="(max-width:700px) 45vw, 30vw"/></button><figcaption>{im.title || `${g.title} / ${String(i+1).padStart(2,'0')}`}</figcaption></figure>)}</div></section>)}</div></Layout>
 
 <style>
-  :global(body.playground-page){background-color:#fff;background-image:radial-gradient(circle,rgba(29,53,87,.14) .8px,transparent 1px);background-size:28px 28px;background-position:14px 14px;background-attachment:fixed}
+  :global(body.playground-page){--navy:#fff;--muted:#fff;--line:rgba(255,255,255,.24);color:#fff;background-color:#1d3557;background-image:radial-gradient(circle,rgba(250,247,240,.12) .8px,transparent 1px),radial-gradient(ellipse at 100% 0%,rgba(227,148,155,.50),transparent 65%),radial-gradient(ellipse at 0% 100%,rgba(227,148,155,.40),transparent 65%),linear-gradient(135deg,#1c2841,#3a3047 52%,#1c2841);background-size:28px 28px,100% 100%,100% 100%,100% 100%;background-position:14px 14px,0 0,0 0,0 0;background-attachment:fixed}
+  :global(.playground-page .site-header),:global(.playground-page footer){background:transparent;color:#fff}
+  :global(body.playground-page .site-header .wordmark .wordmark-period),:global(.playground-page .footer-cta em){color:#fff}
+  :global(.playground-page a:focus-visible),:global(.playground-page button:focus-visible){outline-color:#fff}
   .playground-intro h1{margin-bottom:33.75px}
   .playground-intro .playground-description{max-width:none;font-size:1rem;color:var(--navy)}
   .playground-description strong{display:block;font-weight:700;margin-top:5.4px}
   .playground-heart{display:inline-block;width:1em;height:1em;vertical-align:-.13em;margin-left:.15em}
   .community-details{text-align:right}
   .social-group .section-heading h2{font-size:clamp(2.73125rem,4.807vw,4.5885rem)}
-  @media(max-width:700px){.social-group .section-heading h2{font-size:2.8405rem}}
+  @media(max-width:700px){.social-grid figure{padding:4.75px}.social-group .section-heading h2{font-size:2.8405rem}}
   :global(body.playground-page){overflow-x:clip}
   .playground-canvas{position:relative;isolation:isolate}
   .social-group{position:relative}
-  .social-group::before{content:'';position:absolute;inset:-20% calc((min(1320px, 90vw) - 100vw) / 2);z-index:-2;pointer-events:none;mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);background:radial-gradient(ellipse at 8% 22%,rgba(247,164,171,.0864),transparent 58%),radial-gradient(ellipse at 95% 75%,rgba(153,191,218,.0864),transparent 60%)}
-  .social-group:nth-of-type(even)::before{background:radial-gradient(ellipse at 90% 20%,rgba(247,164,171,.09),transparent 58%),radial-gradient(ellipse at 10% 75%,rgba(153,191,218,.09),transparent 60%)}
-  .social-grid figure{background:#fffefa;border:1px solid rgba(29,53,87,.09);box-shadow:0 2px 8px rgba(29,53,87,.045)}
-  .social-grid figcaption{color:var(--navy);font-family:'DM Sans About',var(--sans);font-weight:468;font-optical-sizing:none}
-  .pink-brief{color:var(--pink)}
-  .playground-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:6%;align-items:center;padding-block:75px 85px}
+  .social-grid figure{background:#fff;border:0;padding:9.5px;box-shadow:0 4px 14px rgba(10,20,40,.12)}
+  .social-grid .zoom-button{display:block;width:100%;padding:0;border:0;background:#fff;box-shadow:none}
+  .social-grid figcaption{padding:8px 0 0 2px;text-align:left;color:#1d3557;font-family:'DM Sans About',var(--sans);font-weight:568.3392;font-optical-sizing:none}
+  .pink-brief{color:#fff}
+  .playground-intro{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr);gap:6%;align-items:center;padding-block:75px 85px}
   .playground-intro h1{font-size:clamp(3.6rem,6.3vw,6rem);margin-top:0}
   @media(max-width:900px){.playground-intro{grid-template-columns:1fr;gap:40px;padding-block:50px 65px}.playground-intro h1{font-size:clamp(3rem,8vw,5rem)}}
   .kusa-flag{display:inline-block;font-size:1.4em;vertical-align:-.1em;margin-right:.5em;letter-spacing:0;line-height:1}
@@ -36,4 +38,11 @@ import Layout from '../layouts/Layout.astro';import Picture from '../components/
   .yip-emoji{font-size:1.33em;vertical-align:middle;flex-shrink:0}
   #lphie .section-heading .eyebrow{display:flex;align-items:center}
   .lpe-emoji{font-size:1.33em;vertical-align:middle;flex-shrink:0}
+  @keyframes playground-float{0%,100%{translate:0 -3.135px}50%{translate:0 3.135px}}
+  @media(prefers-reduced-motion:no-preference){
+    .social-grid figure,:global(.playground-photos .snapshot){animation:playground-float 3.330s ease-in-out infinite}
+    .social-grid figure:nth-child(3n+2),:global(.playground-photos .snapshot:nth-child(3n+2)){animation-duration:4.044s;animation-delay:-3s}
+    .social-grid figure:nth-child(3n),:global(.playground-photos .snapshot:nth-child(3n)){animation-duration:4.519s;animation-delay:-5s}
+    .social-grid figure:hover,.social-grid figure:focus-within,:global(.playground-photos .snapshot:hover){animation-play-state:paused}
+  }
 </style>

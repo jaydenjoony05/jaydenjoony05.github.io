@@ -359,3 +359,6 @@ h3{font-weight:600}
 /* Give the divider and larger button their own row below the artwork. */
 .hero .collage{padding-bottom:0}
 .hero .collage-caption{position:relative;inset:auto;grid-column:1 / -1;grid-row:3;align-self:start;padding-top:16px}
+
+/* Rounded arrow for the default mouse; interactive controls retain their own cursors. */
+@media (pointer:fine){html,body{cursor:url("/cursor-retro.svg") 2 2,auto}}
