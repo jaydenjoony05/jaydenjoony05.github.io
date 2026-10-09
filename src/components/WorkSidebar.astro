@@ -1,0 +1,99 @@
+---
+import projects from '../data/projects.json';
+const featured=['the-upside-downtown','pepper','textures'].map(slug=>projects.find(p=>p.slug===slug)!);
+const allProjects=[...featured,...projects.filter(p=>!featured.some(f=>f.slug===p.slug))];
+---
+<aside class="work-sidebar" aria-label="Portfolio sidebar">
+  <a class="rail-name" href="/">Jayden Park<span>.</span></a>
+  <nav class="rail-nav" aria-label="Desktop navigation"><a href="/#work" aria-current="page">Work</a><a href="/playground/">Playground</a><a href="/about/">About</a></nav>
+  <div class="rail-jumps"><a href="#work">Experience <span>01</span></a><a href="#creative-work">Selected fragments <span>02</span></a></div>
+  <nav class="rail-index" aria-label="Project index">
+    <div class="rail-index-heading">A FEW HIGHLIGHTS</div>
+    <ol id="rail-projects">{allProjects.map((p,i)=><li data-extra={i>=3 ? '' : undefined} hidden={i>=3}><a href={`/work/${p.slug}/`}><span>{p.title}</span><span class="rail-arrow" aria-hidden="true">↗</span></a></li>)}</ol>
+    <button class="rail-expand" type="button" aria-expanded="false" aria-controls="rail-projects" aria-label="Show all projects and keep expanded"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12m-5-5 5 5 5-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </nav>
+  <p class="rail-intro">I work across art, design, and strategy to turn complex ideas into <strong>memorable stories.</strong></p>
+  <a class="rail-contact" href="https://www.linkedin.com/in/jaydenpark2005/">Let’s connect <span>↗</span></a>
+</aside>
+<style>
+.work-sidebar{display:none}
+@media(min-width:1100px){
+.work-sidebar{display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;width:260px;padding:30px 22px 22px 26px;background:var(--paper);border-right:1px solid var(--line);z-index:20;overflow-y:auto;scrollbar-width:thin}
+.rail-name{font-size:27.5625px;font-weight:700;letter-spacing:-.06em;line-height:1.1}.rail-name span{color:var(--pink)}
+.rail-nav{display:flex;gap:18px;margin-top:32px;font-size:11.16px;flex-wrap:wrap}.rail-nav a:after{bottom:-5px;height:1px}
+.rail-intro{font-family:var(--mono);font-size:11.44px;line-height:1.4725;margin:auto 0 0;padding-top:40px;color:var(--muted);max-width:none}.rail-intro strong{color:var(--navy);font-weight:500}
+.rail-jumps{display:grid;margin-top:28px;gap:20px;padding-block:20px;border-block:1px solid var(--line);font-size:11.448px}.rail-jumps a{display:flex;justify-content:space-between}.rail-jumps span{font:10px var(--mono);color:var(--muted)}
+.rail-index{display:block;margin-top:clamp(32px,5vh,52px);flex-shrink:0}
+.work-sidebar>*{flex-shrink:0}
+.rail-index ol{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.rail-index ol::-webkit-scrollbar{display:none}
+.rail-index[data-expanded="true"]{display:flex;flex-direction:column;align-items:stretch;gap:0;flex:1 1 150px;min-height:150px}
+.rail-index[data-expanded="true"] ol{flex:1;min-height:0}
+.rail-index-heading,.rail-expand{flex-shrink:0}
+.rail-expand{display:flex;align-items:center;justify-content:center;width:100%;padding:12px 0;border:0;border-top:1px solid var(--line);background:transparent;color:var(--navy);cursor:pointer}
+.rail-expand:hover{color:var(--pink)}.rail-expand:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.rail-index-heading{font:10px var(--mono);color:var(--muted);padding-bottom:16px}
+.rail-index ol{padding:0;margin:0;list-style:none}.rail-index li{border-top:1px solid var(--line)}.rail-index li a{display:flex;justify-content:space-between;gap:8px;padding:9px 0;font-size:11.448px;line-height:1.4}.rail-index a:after{display:none}.rail-index li a:hover,.rail-index li a:focus-visible{color:var(--muted)}.rail-arrow{opacity:0}.rail-index a:hover .rail-arrow,.rail-index a:focus-visible .rail-arrow{opacity:1}
+.rail-contact{display:flex;justify-content:space-between;margin-top:24px;padding-top:18px;border-top:1px solid var(--line);font-size:12px}
+:global(.sidebar-home>.site-header){display:none}
+:global(.sidebar-home>main),:global(.sidebar-home>footer){margin-left:260px}
+:global(.sidebar-home main>.wrap){width:calc(100% - 64px);max-width:1600px}
+:global(.sidebar-home .hero){display:block;min-height:0;padding:30px 0 42px}
+:global(.sidebar-home .hero-copy){position:absolute;top:auto;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+:global(.sidebar-home .hero-copy>p),:global(.sidebar-home .hero-copy>.text-link){display:none}
+:global(.sidebar-home .hero .collage){max-width:none;width:100%;margin:0;grid-template-columns:minmax(0,3fr) minmax(0,1fr);column-gap:28px;row-gap:24px;padding-top:60px;min-height:0}
+:global(.sidebar-home .collage-heading){font-size:10px;padding-top:12px}
+:global(.sidebar-home .piece-0 img){aspect-ratio:1.3;object-fit:contain;background:#fff}
+:global(.sidebar-home .piece-1 img){max-height:330px;object-fit:contain;background:#fff}
+:global(.sidebar-home .piece-2){width:80%;justify-self:center}
+:global(.sidebar-home .piece-2 img){max-height:260px}
+:global(.sidebar-home .collage-piece:hover),:global(.sidebar-home .collage-piece:focus-visible){transform:translateY(-5px)}
+:global(.sidebar-home .hero .collage-piece>span){font-size:11px}
+:global(.sidebar-home .intro-strip){grid-template-columns:1.5fr .7fr 1.5fr;gap:20px}
+:global(.sidebar-home .intro-strip .focus-line){white-space:normal}
+:global(.sidebar-home .intro-strip .circle-link){display:none}
+:global(.sidebar-home .experience-heading h2),:global(.sidebar-home .fragment-heading h2){font-size:clamp(2.8rem,4.5vw,4.5rem)}
+:global(.sidebar-home .fragment-heading){gap:24px;flex-wrap:wrap}
+}
+@media(min-width:1600px){.work-sidebar{width:280px;padding-inline:30px}:global(.sidebar-home>main),:global(.sidebar-home>footer){margin-left:280px}:global(.sidebar-home main>.wrap){width:calc(100% - 88px)}}
+</style>
+
+<script>
+document.querySelectorAll<HTMLAnchorElement>('.rail-jumps a').forEach(link=>{
+  link.addEventListener('click',event=>{
+    if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey) return;
+    const section=document.querySelector(link.hash);
+    const heading=section?.querySelector<HTMLElement>('.section-heading');
+    if(!heading) return;
+    event.preventDefault();
+    if(location.hash!==link.hash) history.pushState(null,'',link.hash);
+    window.scrollTo({top:window.scrollY+heading.getBoundingClientRect().top-24,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  });
+});
+const rail=document.querySelector<HTMLElement>('.rail-index');
+if(rail){
+  const button=rail.querySelector<HTMLButtonElement>('.rail-expand')!;
+  const extras=rail.querySelectorAll<HTMLElement>('[data-extra]');
+  const list=rail.querySelector<HTMLOListElement>('ol')!;
+  const key='portfolio-project-index-expanded';
+  let pinned=false;
+  try{pinned=sessionStorage.getItem(key)==='true';}catch{}
+  const render=(open:boolean)=>{
+    rail.dataset.expanded=String(open);
+    extras.forEach(item=>item.hidden=!open);
+    button.setAttribute('aria-expanded',String(open));
+    button.setAttribute('aria-label',pinned?'Collapse project list':'Show all projects and keep expanded');
+    button.querySelector('svg')!.style.transform=pinned?'rotate(180deg)':'';
+    if(!open) list.scrollTop=0;
+  };
+  button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse') render(true);});
+  rail.addEventListener('pointerleave',()=>{if(!pinned&&!rail.contains(document.activeElement)) render(false);});
+  rail.addEventListener('focusout',event=>{if(!pinned&&!rail.contains(event.relatedTarget as Node)) render(false);});
+  button.addEventListener('click',()=>{
+    pinned=!pinned;
+    try{sessionStorage.setItem(key,String(pinned));}catch{}
+    render(pinned);
+  });
+  render(pinned);
+}
+</script>

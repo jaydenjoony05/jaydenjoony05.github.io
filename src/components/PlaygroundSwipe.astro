@@ -1,10 +1,10 @@
 <a class="playground-edge" draggable="false" href="/playground/" aria-label="Drag left or press Enter to open Playground"></a>
-<span class="playground-drag-hint" aria-hidden="true"><span>←</span> Drag Left!</span>
+<span class="playground-drag-hint" aria-hidden="true"><svg class="drag-arrow" viewBox="0 0 16 12" aria-hidden="true" focusable="false"><path d="M6 1 0 6l6 5M0 6h16" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>Drag Left</span>
 <div class="playground-slide" aria-hidden="true"></div>
 <style>
 .playground-edge{display:none}
-.playground-drag-hint{position:fixed;left:0;top:0;z-index:10000;pointer-events:none;white-space:nowrap;color:#1d3557;display:flex;align-items:center;gap:5px;line-height:1;font-size:14px;font-weight:750;opacity:0;transform:translate(calc(-100% - 16px),-50%)}
-.playground-drag-hint span{color:#f7a4ab;font-size:17.6px;line-height:1;display:block}
+.playground-drag-hint{position:fixed;left:0;top:0;z-index:10000;pointer-events:none;white-space:nowrap;color:#f7a4ab;background:#1d3557;display:flex;align-items:center;justify-content:flex-start;text-align:left;gap:6px;padding:9px 18px 9px 0;border-radius:0;line-height:1.2;font-size:10.4325px;font-weight:500;opacity:0;transform:translate(calc(-100% - 16px),-50%)}
+.playground-drag-hint .drag-arrow{display:block;flex:0 0 16px;width:16px;height:12px;color:#f7a4ab}
 :global(html.playground-edge-hover .cursor-dot){visibility:hidden}
 :global(html.playground-edge-hover) .playground-drag-hint{opacity:1}
 .playground-slide{position:fixed;inset:0 auto 0 0;width:100vw;z-index:100;transform:translate3d(100%,0,0);pointer-events:none;background:linear-gradient(135deg,#1d3557,#826575,#1d3557);visibility:hidden}
@@ -22,7 +22,7 @@ const edge=document.querySelector<HTMLAnchorElement>('.playground-edge');
 const slide=document.querySelector<HTMLElement>('.playground-slide');
 const hint=document.querySelector<HTMLElement>('.playground-drag-hint');
 if(edge&&slide){
- const surfaces=Array.from(document.querySelectorAll<HTMLElement>('body > .site-header,body > main,body > footer'));
+ const surfaces=Array.from(document.querySelectorAll<HTMLElement>('body > .site-header,body > .work-sidebar,body > main,body > footer'));
  let startX=0,startY=0,active=false,dragged=false,navigating=false;
  let previewReady:Promise<void>|undefined;
  const homeTitle=document.title;

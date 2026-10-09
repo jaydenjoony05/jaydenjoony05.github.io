@@ -362,3 +362,16 @@ h3{font-weight:600}
 
 /* Rounded arrow for the default mouse; interactive controls retain their own cursors. */
 @media (pointer:fine){html,body{cursor:url("/cursor-outline-white.svg") 2 2,auto}}
+
+/* Monospace accents: labels and small artwork captions. */
+:root{--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,monospace}
+.site-header nav,.work-sidebar .rail-nav{font-family:var(--mono);font-weight:400}
+.eyebrow,.collage-heading,.hero .collage-piece>span,.hero .collage-piece>span b,.fragment-count,.fragment-toolbar .filters button,.experience-preview figcaption{font-family:var(--mono);font-weight:400}
+.eyebrow{letter-spacing:.065em}
+.collage-heading{letter-spacing:0;gap:16px;flex-wrap:wrap;font-size:.65rem}
+.hero .collage-piece>span{font-size:.7rem;letter-spacing:-.025em}
+@media(max-width:700px){.collage-heading{font-size:.6rem;gap:6px}.hero .collage-piece>span{font-size:.65rem}}
+
+/* Raise the introduction slightly within the hero composition. */
+.hero-copy{position:relative;top:-30px}
+@media(max-width:700px){.hero-copy{top:-12px}}
