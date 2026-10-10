@@ -117,8 +117,8 @@ h3{font-weight:600}
 .experience-preview img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;object-position:top;transition:opacity .2s}
 .experience-preview a:hover img{opacity:.88}
 .experience-preview figcaption{font-size:.7rem;color:var(--muted);margin-top:10px}
-.experience-impact h4{font-size:clamp(1.4rem,2.1vw,2rem);font-weight:500;line-height:1.17;letter-spacing:-.045em;margin:2px 0 18px;max-width:24ch}
-.experience-impact>p{font-size:.9rem;line-height:1.65;color:var(--muted)}
+.experience-impact h4{font-size:clamp(1.232rem,1.848vw,1.76rem);font-weight:500;line-height:1.17;letter-spacing:-.045em;margin:2px 0 18px;max-width:24ch}
+.experience-impact>p{font-size:.792rem;line-height:1.65;color:var(--muted)}
 .experience-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:28px 0}
 .experience-metrics>div{display:grid;grid-template-rows:auto 1fr;gap:7px}
 .experience-metrics dt{font-size:.7rem;line-height:1.4;color:var(--muted);max-width:15ch}
@@ -129,10 +129,10 @@ h3{font-weight:600}
 .experience-impact summary>span{font-size:1.3rem;line-height:1}
 .experience-impact details[open] summary>span{transform:rotate(45deg)}
 .experience-impact summary:focus-visible{outline:3px solid #aa3654;outline-offset:4px}
-.experience-impact ul{padding-left:18px;margin:0 0 10px;font-size:.85rem;color:var(--muted)}
+.experience-impact ul{padding-left:18px;margin:0 0 10px;font-size:.7905rem;color:var(--muted)}
 .experience-impact li+li{margin-top:12px}
 @media(max-width:1000px){.experience-brand{gap:15px}.company-logo{width:80px}.logo-tiktok{width:32px}.experience-body{gap:4%;grid-template-columns:1.2fr 1fr}.experience-metrics{gap:10px}}
-@media(max-width:800px){.experience-section{padding-top:65px}.experience-header{align-items:start}.experience-body{grid-template-columns:1fr;gap:28px}.experience-impact h4{max-width:30ch;font-size:1.7rem}.experience-metrics{max-width:480px}.experience-role{max-width:180px}.experience-item{padding-bottom:40px}.experience-heading>p{margin-top:20px}}
+@media(max-width:800px){.experience-section{padding-top:65px}.experience-header{align-items:start}.experience-body{grid-template-columns:1fr;gap:28px}.experience-impact h4{max-width:30ch;font-size:1.496rem}.experience-metrics{max-width:480px}.experience-role{max-width:180px}.experience-item{padding-bottom:40px}.experience-heading>p{margin-top:20px}}
 @media(max-width:500px){.experience-header{flex-direction:column;gap:14px}.experience-role{text-align:left;max-width:none}.experience-brand p{font-size:.7rem}.experience-heading h2{font-size:2.6rem}.experience-preview figcaption{font-size:.65rem}.experience-metrics dd{font-size:2rem}}
 .logo-loreal{filter:none;width:80px;height:64px;object-fit:contain;object-position:center;background:white}
 /* Center the supplied, tightly framed color mark. */
@@ -158,8 +158,8 @@ h3{font-weight:600}
 .fragment-heading h2{font-size:clamp(3rem,5.5vw,5.4rem)}
 .fragment-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;border-block:1px solid var(--line);padding:17px 0;margin-bottom:36px}
 .fragment-toolbar .filters{margin:0}
-.fragment-toolbar .filters button{border:0;padding:8px 13px;font-size:.8rem}
-.fragment-count{font-size:.75rem;color:var(--muted);white-space:nowrap}
+.fragment-toolbar .filters button{border:0;padding:8px 13px;font-size:.68rem}
+.fragment-count{font-size:.6375rem;color:var(--muted);white-space:nowrap}
 .fragment-web{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px 34px;align-items:center}
 .fragment{min-width:0;position:relative}
 .fragment-shape-0{grid-column:span 5;padding-top:20px}
@@ -183,7 +183,7 @@ h3{font-weight:600}
 @media(hover:hover){.fragment-link:hover .fragment-image img{transform:translateY(-7px) scale(1.025)}.fragment-link:hover .fragment-open{opacity:1;transform:none}.fragment-link:hover .fragment-label{border-color:var(--navy)}}
 .fragment-web:not([data-active-filter="all"]) .fragment{grid-column:span 4;width:100%;padding-top:0;align-self:start}
 @media(max-width:900px){.fragment-web{grid-template-columns:repeat(2,minmax(0,1fr));gap:45px 28px}.fragment-web .fragment{grid-column:auto;width:100%;padding-top:0;align-self:center}.fragment-web .fragment:nth-child(even){padding-top:60px}.fragment-web:not([data-active-filter="all"]) .fragment{grid-column:auto;padding-top:0}.fragment-image img{max-height:330px}.fragment-heading h2{font-size:3.7rem}}
-@media(max-width:550px){.fragment-section{padding-block:65px}.fragment-heading h2{font-size:3.2rem}.fragment-toolbar{gap:10px;margin-bottom:32px}.fragment-toolbar .filters{gap:3px}.fragment-toolbar .filters button{font-size:.72rem;padding:8px}.fragment-count{font-size:.65rem}.fragment-web{grid-template-columns:minmax(0,1fr);gap:42px}.fragment-web .fragment:nth-child(n){padding:0;width:100%}.fragment-web[data-active-filter="all"] .fragment:nth-child(3n+2){width:86%;justify-self:end}.fragment-web[data-active-filter="all"] .fragment:nth-child(3n){width:86%;justify-self:start}.fragment-image img{max-height:390px}.fragment-label h3{font-size:1rem}.fragment-image{min-height:0}}
+@media(max-width:550px){.fragment-section{padding-block:65px}.fragment-heading h2{font-size:3.2rem}.fragment-toolbar{gap:10px;margin-bottom:32px}.fragment-toolbar .filters{gap:3px}.fragment-toolbar .filters button{font-size:.612rem;padding:8px}.fragment-count{font-size:.5525rem}.fragment-web{grid-template-columns:minmax(0,1fr);gap:42px}.fragment-web .fragment:nth-child(n){padding:0;width:100%}.fragment-web[data-active-filter="all"] .fragment:nth-child(3n+2){width:86%;justify-self:end}.fragment-web[data-active-filter="all"] .fragment:nth-child(3n){width:86%;justify-self:start}.fragment-image img{max-height:390px}.fragment-label h3{font-size:1rem}.fragment-image{min-height:0}}
 
 /* Soft button corners and a lighter gallery title. */
 .fragment-toolbar .filters button,.fragment-open{border-radius:6px}
@@ -335,7 +335,7 @@ h3{font-weight:600}
 .fragment-credit li svg{width:14px;height:14px;flex-shrink:0;color:var(--navy);align-self:flex-start;margin-top:5px}
 
 /* Align the supporting copy with the bottom of the Selected Fragments title. */
-.fragment-heading .fragment-introduction{align-self:flex-end;font-size:.88825rem}
+.fragment-heading .fragment-introduction{align-self:flex-end;font-size:.735204525rem}
 .fragment-heading .fragment-introduction>p,
 .fragment-heading .fragment-introduction .fragment-credit{font-size:inherit}
 .fragment-credit li svg{width:13.09px;height:13.09px;margin-top:4.675px}
@@ -375,3 +375,28 @@ h3{font-weight:600}
 /* Raise the introduction slightly within the hero composition. */
 .hero-copy{position:relative;top:-30px}
 @media(max-width:700px){.hero-copy{top:-12px}}
+
+/* Give the two main work collections a calmer, centered reading width. */
+@media(min-width:1100px){
+  .sidebar-home main .scroll-panel>.wrap.experience-section,
+  .sidebar-home main .scroll-panel>.wrap.fragment-section{
+    width:78%;
+    max-width:1240px;
+    margin-inline:auto;
+  }
+}
+
+@media(min-width:1100px){
+  .sidebar-home .experience-impact h4{margin-bottom:26px}
+  .sidebar-home .experience-metrics{margin:38px 0 36px}
+  .sidebar-home .experience-impact summary{padding-block:18px}
+}
+
+.experience-preview figcaption{font-family:var(--sans)}
+
+.experience-impact h4{text-wrap:balance}
+.fragment-heading .fragment-introduction>p{font-size:.837em;line-height:1.52}
+
+.fragment-heading .fragment-introduction .fragment-credit{font-size:1.1em}
+.playground-page .site-header nav,.about-page .site-header nav{font-size:.765rem}
+@media(max-width:700px){.playground-page .site-header nav,.about-page .site-header nav{font-size:.68rem}}

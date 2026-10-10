@@ -1,0 +1,48 @@
+<style is:global>
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .layered-scroll .scroll-panel{position:sticky;top:var(--panel-top,0px);z-index:var(--panel-order,1);background:var(--paper);isolation:isolate;}
+  .layered-scroll .scroll-panel~.scroll-panel{padding-top:clamp(40px,5vw,72px);clip-path:inset(0 var(--panel-inset,0px) round var(--panel-radius,0px));}
+  .layered-scroll.playground-page .scroll-panel{background-color:#1d3557;background-image:radial-gradient(circle,rgba(250,247,240,.12) .8px,transparent 1px),radial-gradient(ellipse at 100% 0%,rgba(227,148,155,.50),transparent 65%),radial-gradient(ellipse at 0% 100%,rgba(227,148,155,.40),transparent 65%),linear-gradient(135deg,#1c2841,#3a3047 52%,#1c2841);background-size:28px 28px,100vw 100vh,100vw 100vh,100vw 100vh;background-position:14px 14px,0 0,0 0,0 0;background-attachment:fixed;}
+  .layered-scroll .scroll-panel:has(>.experience-section){padding-bottom:clamp(180px,35vh,340px);}
+  .layered-scroll main{position:relative;isolation:isolate;}
+  .layered-scroll footer{position:relative;z-index:1;}
+  .sidebar-home .scroll-panel>.wrap{width:calc(100% - 64px);max-width:1600px;}
+}
+@media (min-width:1600px) and (prefers-reduced-motion:no-preference){.sidebar-home .scroll-panel>.wrap{width:calc(100% - 88px)}}
+</style>
+<script>
+const panels=Array.from(document.querySelectorAll<HTMLElement>('.scroll-panel'));
+const enabled=matchMedia('(min-width:901px) and (prefers-reduced-motion:no-preference)');
+let pending=false;
+const measure=()=>{
+  document.body.classList.toggle('layered-scroll',enabled.matches);
+  panels.forEach((panel,index)=>{
+    panel.style.setProperty('--panel-order',String(index+1));
+    // Tall sections scroll completely before their bottom edge holds in place.
+    panel.style.setProperty('--panel-top',`${Math.min(0,innerHeight-panel.offsetHeight)}px`);
+  });
+  paint();
+};
+function paint(){
+  pending=false;
+  if(!enabled.matches) return;
+  panels.forEach((panel,index)=>{
+    if(!index) return;
+    const top=panel.getBoundingClientRect().top;
+    const progress=Math.max(0,Math.min(1,(innerHeight-top)/(innerHeight*.8)));
+    const eased=1-Math.pow(1-progress,3);
+    panel.style.setProperty('--panel-inset',`${18*(1-eased)}px`);
+    panel.style.setProperty('--panel-radius',`${18*(1-eased)}px`);
+  });
+}
+const queue=()=>{if(!pending){pending=true;requestAnimationFrame(paint);}};
+if(panels.length){
+  measure();
+  const resize=new ResizeObserver(measure);
+  panels.forEach(panel=>resize.observe(panel));
+  addEventListener('scroll',queue,{passive:true});
+  addEventListener('resize',measure,{passive:true});
+  enabled.addEventListener('change',measure);
+  document.fonts.ready.then(measure);
+}
+</script>

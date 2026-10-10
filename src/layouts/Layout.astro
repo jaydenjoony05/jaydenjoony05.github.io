@@ -1,5 +1,6 @@
 ---
 import '../fonts.css';
+import LayeredScroll from '../components/LayeredScroll.astro';
 import PlaygroundSwipe from '../components/PlaygroundSwipe.astro';
 import WorkSidebar from '../components/WorkSidebar.astro';
 import '../style.css';
@@ -32,6 +33,7 @@ if (location.pathname === '/' && !matchMedia('(prefers-reduced-motion: reduce)')
 <footer id="contact"><div class="footer-top"><a class="footer-cta" href="https://www.linkedin.com/in/jaydenpark2005/">Always happy to <em>connect &amp; chat!</em><span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© {new Date().getFullYear()} Jayden Park</span><span>Made with curiosity & a little pink.</span><div><a href="mailto:jayden.l.park@vanderbilt.edu">Email ↗</a><a href="https://www.linkedin.com/in/jaydenpark2005/">LinkedIn ↗</a><a href="https://www.instagram.com/wnsduq_/">Instagram ↗</a><a href="/writing/">Writing</a></div></div></footer>
 <dialog id="lightbox" aria-label="Artwork enlarged"><button class="lightbox-close" aria-label="Close enlarged artwork">Close ×</button><img alt=""/><p></p></dialog>
 {path==='/' && <PlaygroundSwipe/>}
+{['/','/about/'].includes(path) && <LayeredScroll/>}
 <span class="cursor-dot" aria-hidden="true"></span>
 
 <script>
