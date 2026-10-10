@@ -400,3 +400,21 @@ h3{font-weight:600}
 .fragment-heading .fragment-introduction .fragment-credit{font-size:1.1em}
 .playground-page .site-header nav,.about-page .site-header nav{font-size:.765rem}
 @media(max-width:700px){.playground-page .site-header nav,.about-page .site-header nav{font-size:.68rem}}
+
+/* Scale the About introduction's typography and spacing together. */
+.about-story{width:85%;justify-self:start}
+.about-story .eyebrow{font-size:.6375rem}
+.about-story .about-intro h1{font-size:clamp(3.213rem,5.236vw,4.998rem);margin-top:34px}
+.about-story .about-intro .about-greeting{font-size:clamp(1.50609375rem,2.5659375vw,2.454375rem);margin-top:17px}
+.about-story .about-intro{padding-bottom:54.4px}
+.about-story .about-bio>p:nth-of-type(-n+3){font-size:.8211rem}
+.about-story .about-bio p+p{margin-top:23.8px}
+@media(min-width:701px) and (max-width:1100px){.about-story .about-intro h1{font-size:clamp(2.55rem,4.76vw,3.825rem)}}
+@media(max-width:700px){
+  .about-story .eyebrow{font-size:.578rem}
+  .about-story .about-intro h1{font-size:clamp(2.38rem,7.82vw,3.213rem);margin-top:27.2px}
+  .about-story .about-intro .about-greeting{font-size:clamp(1.4503125rem,5.131875vw,2.1196875rem)}
+  .about-story .about-intro{padding-bottom:40.8px}
+  .about-story .about-bio>p:nth-of-type(-n+3){font-size:.7497rem}
+  .about-story .about-bio p+p{margin-top:20.4px}
+}
