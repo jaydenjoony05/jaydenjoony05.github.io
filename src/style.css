@@ -418,3 +418,7 @@ h3{font-weight:600}
   .about-story .about-bio>p:nth-of-type(-n+3){font-size:.7497rem}
   .about-story .about-bio p+p{margin-top:20.4px}
 }
+
+/* Center the About opening within the space below the navigation. */
+.about-page .about-overview{min-height:calc(100svh - 100px);padding-block:55.575px 65px;align-content:center}
+@media(max-width:700px){.about-page .about-overview{min-height:0;padding-block:38.475px 45px}}

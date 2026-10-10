@@ -11,7 +11,7 @@ The complete design immediately before the desktop sidebar experiment. It includ
 - Navy Drag Left label, pink arrow touching the left edge, and the latest label text sizing.
 - All previously published Playground, cursor, and transition changes.
 
-## Version 2 — latest checkpoint: `portfolio-version-2-r6`
+## Version 2 — latest checkpoint: `portfolio-version-2-r7`
 
 Saved locally on 2026-10-10; not published. This is the default checkpoint for future requests to restore Version 2.
 
@@ -22,6 +22,8 @@ This checkpoint also tightens the gap between Experience and Selected fragments 
 The “[ JAYDEN PARK ]” label above the featured artwork now links to the About page. The prior spacing checkpoint remains available as `portfolio-version-2-r3`.
 
 The About introduction is scaled down by 15% in typography, width, and spacing, with its body text then increased by 5%. The preceding checkpoint remains available as `portfolio-version-2-r5`.
+
+The About opening is centered within the viewport below navigation, with its top padding subsequently reduced by 5% and then 10%. The previous checkpoint remains available as `portfolio-version-2-r6`.
 
 ### Latest refinements
 - Layered section scrolling on Work and About, with regular scrolling on Playground and reduced-motion/mobile fallbacks.
@@ -37,6 +39,6 @@ The checkpoint before these refinements remains available as `portfolio-version-
 The first desktop sidebar design, based on Version 1. It adds the fixed desktop rail, introduction, project index, enlarged main artwork area, and keeps the familiar mobile navigation. The Playground transition also moves and hides the sidebar appropriately.
 
 ## Future requests
-If the user says “Revert to Version 1”, restore the website to `portfolio-version-1`. If they request Version 2, use the latest checkpoint `portfolio-version-2-r6`. The original sidebar snapshot remains available as `portfolio-version-2`. Preserve unrelated user work and these version records. Inspect differences before restoring, and remove website files introduced after the requested snapshot when necessary (for example, Version 1 has no WorkSidebar.astro). Rebuild and validate the preview. Do not publish a version switch unless requested.
+If the user says “Revert to Version 1”, restore the website to `portfolio-version-1`. If they request Version 2, use the latest checkpoint `portfolio-version-2-r7`. The original sidebar snapshot remains available as `portfolio-version-2`. Preserve unrelated user work and these version records. Inspect differences before restoring, and remove website files introduced after the requested snapshot when necessary (for example, Version 1 has no WorkSidebar.astro). Rebuild and validate the preview. Do not publish a version switch unless requested.
 
 Never move or overwrite these tags. New experiments may continue in the working tree without changing these saved versions.
