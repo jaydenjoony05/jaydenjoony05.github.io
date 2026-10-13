@@ -422,3 +422,7 @@ h3{font-weight:600}
 /* Center the About opening within the space below the navigation. */
 .about-page .about-overview{min-height:calc(100svh - 100px);padding-block:55.575px 65px;align-content:center}
 @media(max-width:700px){.about-page .about-overview{min-height:0;padding-block:38.475px 45px}}
+
+/* Keep page-edge gestures from exposing a separate browser canvas. */
+html{background-color:var(--paper);overscroll-behavior-y:none}
+body{overscroll-behavior-y:none}
